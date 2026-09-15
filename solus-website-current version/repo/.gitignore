@@ -1,0 +1,12 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Local servers / tooling, in case someone adds a build step later
+node_modules/
+.env
+*.log

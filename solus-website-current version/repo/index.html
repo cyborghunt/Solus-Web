@@ -1,0 +1,459 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#060605">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<title>SOLUS — Drive. Machines. People.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core.css">
+<style>
+
+/* ================= LOADER ================= */
+body.lock{overflow:hidden;height:100vh}
+#load{position:fixed;inset:0;z-index:500;background:var(--ink)}
+#load .flash{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.5;filter:grayscale(1) contrast(1.3)}
+#load .vig{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 20%,rgba(6,6,5,.92) 78%)}
+#load .cnt{position:absolute;right:var(--pad);bottom:clamp(20px,6vh,60px);font-family:var(--display);
+  font-size:clamp(70px,18vw,240px);line-height:.8;letter-spacing:-.04em}
+#load .lbl{position:absolute;left:var(--pad);bottom:clamp(26px,6vh,64px);font-family:var(--mono);
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--bone2)}
+#load .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--red);width:0}
+
+/* enter screen */
+#enter{position:fixed;inset:0;z-index:480;background:var(--ink);display:grid;place-items:center;opacity:0;visibility:hidden}
+#enter.show{opacity:1;visibility:visible}
+#enter .word{font-family:var(--display);font-size:clamp(70px,20vw,300px);line-height:.78;letter-spacing:-.035em;
+  text-transform:uppercase;display:flex;overflow:hidden}
+#enter .word span{display:inline-block;transform:translateY(110%);transition:transform .85s cubic-bezier(.16,1,.3,1)}
+#enter.show .word span{transform:none}
+#enter .tagline{margin-top:22px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--bone2);opacity:0;transition:opacity .6s .7s}
+#enter.show .tagline{opacity:1}
+#enter .prompt{position:absolute;bottom:8vh;left:50%;transform:translateX(-50%);display:grid;justify-items:center;gap:12px;
+  cursor:pointer;opacity:0;transition:opacity .6s .9s}
+#enter.show .prompt{opacity:1}
+#enter .prompt b{font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.3em;text-transform:uppercase}
+#enter .prompt i{width:1px;height:46px;background:var(--rule);position:relative;overflow:hidden;display:block}
+#enter .prompt i:after{content:'';position:absolute;inset:0;background:var(--red);transform:translateY(-100%);
+  animation:runD 1.4s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes runD{50%{transform:none}100%{transform:translateY(100%)}}
+
+/* slat reveal */
+#slats{position:fixed;inset:0;z-index:470;display:flex;pointer-events:none}
+#slats div{flex:1;background:var(--ink);transform:translateY(0);transition:transform .9s cubic-bezier(.76,0,.24,1)}
+#slats.gone div{transform:translateY(-101%)}
+
+/* ================= HERO ================= */
+#hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:grid;place-items:center}
+#hero .bg{position:absolute;inset:-8%;background-size:cover;background-position:center;
+  filter:grayscale(.45) contrast(1.1) brightness(.32);will-change:transform}
+#hero .bg:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,6,5,.95),transparent 55%)}
+#hero .mid{position:relative;z-index:3;text-align:center;width:100%;padding:0 var(--pad)}
+#hero .cut{font-family:var(--display);font-size:clamp(88px,27vw,420px);line-height:.74;letter-spacing:-.045em;
+  text-transform:uppercase;background-size:cover;background-position:center 38%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:contrast(1.45) saturate(1.3) brightness(1.12)
+    drop-shadow(0 0 1px rgba(244,241,230,.55)) drop-shadow(0 18px 50px rgba(0,0,0,.75))}
+#hero .under{margin-top:18px;font-family:var(--mono);font-size:clamp(9px,1vw,12px);letter-spacing:.42em;
+  text-transform:uppercase;color:var(--bone2)}
+#hero .corner{position:absolute;z-index:4;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--bone2);max-width:230px;line-height:1.7}
+#hero .c-l{left:var(--pad);bottom:clamp(60px,12vh,110px)}
+#hero .c-r{right:var(--pad);bottom:clamp(60px,12vh,110px);text-align:right}
+#hero .c-r b{display:block;font-family:var(--display);font-size:34px;color:var(--bone);letter-spacing:.01em;line-height:1}
+@media(max-width:760px){#hero .corner{max-width:140px;font-size:9px}#hero .c-r b{font-size:24px}}
+
+/* ================= VELOCITY MARQUEE ================= */
+.vm{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink2);
+  overflow:hidden;padding:clamp(10px,1.6vw,20px) 0;will-change:transform}
+.vm .row{display:flex;white-space:nowrap;will-change:transform}
+.vm .row span{font-family:var(--display);font-size:clamp(34px,7vw,104px);line-height:.9;text-transform:uppercase;
+  letter-spacing:-.025em;padding:0 clamp(14px,2vw,32px);display:inline-block}
+.vm .row span.o{-webkit-text-stroke:1px var(--bone);color:transparent}
+.vm .row span.r{color:var(--red)}
+.vm .r2 span{font-family:var(--mono);font-size:clamp(11px,1.4vw,15px);letter-spacing:.24em;color:var(--dim);
+  padding:0 22px;-webkit-text-stroke:0}
+
+/* ================= COLLECTIVE ================= */
+.cwrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,70px);align-items:end}
+.cwrap p{color:var(--bone2);font-size:clamp(15px,1.2vw,19px);line-height:1.6;max-width:440px;margin-top:20px}
+.counts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--rule)}
+.counts div{padding:22px 10px 0 0;border-right:1px solid var(--line)}
+.counts div:last-child{border-right:0}
+.counts b{display:block;font-family:var(--display);font-size:clamp(46px,9vw,140px);line-height:.82;letter-spacing:-.03em}
+.counts span{display:block;margin-top:8px;font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+@media(max-width:860px){.cwrap{grid-template-columns:1fr}}
+
+/* ================= HORIZONTAL DRIVES ================= */
+#drives{background:var(--ink)}
+.pin{height:420vh;position:relative}
+.pinner{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.ptop{display:flex;justify-content:space-between;padding:74px var(--pad) 0;font-family:var(--mono);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);position:absolute;top:0;left:0;right:0}
+.ptop .n{color:var(--red)}
+.track{display:flex;gap:clamp(12px,2vw,30px);padding:0 var(--pad);will-change:transform}
+.card{position:relative;flex:0 0 clamp(270px,42vw,620px);height:clamp(380px,62vh,640px);overflow:hidden;background:var(--ink2)}
+.card img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) contrast(1.1);transition:filter .5s,transform .8s}
+.card:hover img{filter:none;transform:scale(1.05)}
+.card .no{position:absolute;top:0;left:0;z-index:3;font-family:var(--display);font-size:clamp(60px,10vw,150px);
+  line-height:.8;letter-spacing:-.04em;-webkit-text-stroke:1px rgba(244,241,230,.75);color:transparent;padding:10px 0 0 14px}
+.card .inf{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:20px;
+  background:linear-gradient(transparent,rgba(6,6,5,.94) 62%)}
+.card .inf h3{font-family:var(--display);font-size:clamp(28px,3.6vw,56px);line-height:.88;text-transform:uppercase;letter-spacing:-.025em}
+.card .inf .d{margin-top:10px;display:flex;gap:18px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--bone2);flex-wrap:wrap}
+.card .inf .d b{color:var(--red);font-weight:500}
+.pbar{position:absolute;left:var(--pad);right:var(--pad);bottom:58px;height:1px;background:var(--rule)}
+.pbar i{display:block;height:100%;width:0;background:var(--red)}
+@media(max-width:860px){
+  .pin{height:auto}.pinner{position:static;height:auto;padding:0 0 30px}
+  .track{flex-direction:column;transform:none!important;padding:56px var(--pad) 0}
+  .card{flex:none;width:100%;height:64vh}.pbar{display:none}
+  .ptop{position:static;padding:0 var(--pad) 18px}
+}
+
+/* ================= DETAIL TRIPTYCH ================= */
+#detail{background:var(--ink);border-top:1px solid var(--line)}
+.trip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.4vw,20px);margin-top:clamp(34px,5vw,64px)}
+.trip figure{position:relative}
+.trip .fr{position:relative;overflow:hidden;aspect-ratio:3/4.15;background:var(--ink2)}
+.trip img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
+  filter:grayscale(.3) contrast(1.12);transition:transform .9s cubic-bezier(.16,1,.3,1),filter .5s}
+.trip figure:hover img{transform:scale(1.06);filter:none}
+.trip .idx{position:absolute;z-index:3;left:12px;top:8px;font-family:var(--display);
+  font-size:clamp(30px,3.6vw,62px);line-height:1;letter-spacing:-.03em;
+  -webkit-text-stroke:1px rgba(244,241,230,.85);color:transparent}
+.trip figcaption{margin-top:14px;display:flex;justify-content:space-between;gap:12px;
+  border-top:1px solid var(--rule);padding-top:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.trip figcaption b{color:var(--bone);font-weight:500}
+.trip figure:hover figcaption b{color:var(--red)}
+@media(max-width:820px){.trip{grid-template-columns:1fr}.trip .fr{aspect-ratio:4/3}}
+
+/* ================= FULL BLEED QUOTE ================= */
+#quote{position:relative;height:88svh;min-height:420px;overflow:hidden;display:grid;place-items:center;text-align:center}
+#quote .bg{position:absolute;inset:-6%;background-size:cover;background-position:center;filter:grayscale(.4) brightness(.4) contrast(1.2);will-change:transform}
+#quote .q{position:relative;z-index:2;padding:0 var(--pad);font-family:var(--display);
+  font-size:clamp(34px,7.4vw,120px);line-height:.88;text-transform:uppercase;letter-spacing:-.03em}
+#quote .q em{font-family:var(--body);font-weight:300;font-style:italic;text-transform:none}
+
+/* ================= GALLERY TEASE ================= */
+.gt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:clamp(26px,4vw,50px)}
+.gt figure{position:relative;overflow:hidden;background:var(--ink2);aspect-ratio:3/4}
+.gt figure:first-child{grid-row:span 2;aspect-ratio:auto;min-height:100%}
+.gt img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s;filter:grayscale(.35)}
+.gt figure:hover img{transform:scale(1.07);filter:none}
+@media(max-width:760px){.gt{grid-template-columns:1fr 1fr}.gt figure:first-child{grid-row:span 1;aspect-ratio:3/4}}
+
+/* ================= ACCESS ================= */
+#access{background:var(--red);color:#000;text-align:center;padding:clamp(80px,13vw,190px) var(--pad)}
+#access .k{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase}
+#access .big{font-family:var(--display);font-size:clamp(46px,13vw,220px);line-height:.8;text-transform:uppercase;
+  letter-spacing:-.04em;margin-top:24px}
+#access .big span{-webkit-text-stroke:1.5px #000;color:transparent}
+#access p{max-width:540px;margin:26px auto 0;font-size:clamp(15px,1.3vw,19px);line-height:1.5;color:rgba(0,0,0,.78)}
+#access .btn{margin-top:38px;border-color:#000;color:#000}
+#access .btn:before{background:#000}
+#access .btn:hover{color:var(--red)}
+#access .led{max-width:620px;margin:44px auto 0;text-align:left}
+#access .led div{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid rgba(0,0,0,.3);
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+#access .led b{font-weight:500}
+</style></head><body class="lock">
+
+<div id="grain"></div><div id="scan"></div>
+<div id="cur"><b>VIEW</b></div><div id="curDot"></div>
+
+<!-- LOADER -->
+<div id="load">
+  <div class="flash" id="flash"></div><div class="vig"></div>
+  <div class="lbl">LOADING ARCHIVE — SOLUS / BANGALORE</div>
+  <div class="cnt" id="cnt">000</div>
+  <div class="bar" id="lbar"></div>
+</div>
+
+<!-- ENTER -->
+<div id="enter">
+  <div>
+    <div class="word" id="word"></div>
+    <div class="tagline">DRIVE. MACHINES. PEOPLE.</div>
+  </div>
+  <div class="prompt" id="prompt"><b>SCROLL TO ENTER</b><i></i></div>
+</div>
+<div id="slats"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+<header class="top">
+  <a class="mark" href="index.html"><img src="assets/img/logo.png" alt="Solus"></a>
+  <div class="mid">PRIVATE AUTOMOTIVE COLLECTIVE — MMXXVI</div>
+  <button class="menu" id="mOpen">INDEX <i></i></button>
+</header>
+
+<div class="drawer" id="drawer">
+  <button class="dclose" id="mClose">CLOSE ×</button>
+  <nav class="dnav">
+    <a href="#collective"><span><i>01</i>Collective</span></a>
+    <a href="#drives"><span><i>02</i>Drives</span></a>
+    <a href="#machines"><span><i>03</i>Machines</span></a>
+    <a href="gallery.html"><span><i>04</i>Archive</span></a>
+    <a href="access.html"><span><i>05</i>Access</span></a>
+  </nav>
+  <div class="dfoot"><span>BANGALORE / INDIA</span><a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a><span>MMXXVI</span></div>
+</div>
+
+<div class="hud bl" id="hudL">SOLUS / 2026<br>BANGALORE · IND</div>
+<div class="hud br" id="hudR">SCROLL <span id="vel">0.00</span><br><span id="pct">000</span>% ARCHIVE</div>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <div class="bg" id="hbg"></div>
+  <div class="mid">
+    <div class="cut" id="cut">SOLUS</div>
+    <div class="under">PRIVATE AUTOMOTIVE COLLECTIVE — EST. MMXXVI</div>
+  </div>
+  <div class="corner c-l">THE CAR IS ONLY<br>HALF THE STORY.</div>
+  <div class="corner c-r"><b>63</b>MEMBERS<br>47 MACHINES</div>
+</section>
+
+<!-- VELOCITY MARQUEE -->
+<div class="vm" id="vm">
+  <div class="row" id="row1">
+    <span>DRIVE.</span><span class="o">MACHINES.</span><span class="r">PEOPLE.</span><span class="o">UNSEEN.</span>
+    <span>DRIVE.</span><span class="o">MACHINES.</span><span class="r">PEOPLE.</span><span class="o">UNSEEN.</span>
+  </div>
+  <div class="row r2" id="row2">
+    <span>BANGALORE</span><span>BY INTRODUCTION</span><span>01:42 AM</span><span>NO AUDIENCE</span><span>MMXXVI</span>
+    <span>BANGALORE</span><span>BY INTRODUCTION</span><span>01:42 AM</span><span>NO AUDIENCE</span><span>MMXXVI</span>
+  </div>
+</div>
+
+<!-- 01 COLLECTIVE -->
+<section class="sec" id="collective">
+  <div class="shead"><span class="n">01 — The Collective</span><span class="t">Noise / Signal</span></div>
+  <div class="cwrap">
+    <h2 class="stmt rv" data-scramble>We don't collect cars.<br>We collect the people<br>who <em>refuse</em> to leave<br>them parked.</h2>
+    <div class="rv">
+      <p>No showroom. No leaderboard. No performance of wealth. A shared standard for how machines are built, driven and respected.</p>
+      <p style="color:var(--dim)">Access is earned in person, on the road, at an hour most people are asleep.</p>
+    </div>
+  </div>
+  <div class="counts rv">
+    <div><b data-count="47">0</b><span>Machines</span></div>
+    <div><b data-count="63">0</b><span>Members</span></div>
+    <div><b data-count="04">0</b><span>Archived Drives</span></div>
+  </div>
+</section>
+
+<!-- 02 DRIVES (pinned horizontal) -->
+<section id="drives">
+  <div class="pin" id="pin">
+    <div class="pinner">
+      <div class="ptop"><span class="n">02 — The Drives</span><span>FIELD ARCHIVE / 001—004 →</span></div>
+      <div class="track" id="track">
+        <article class="card"><img data-k="MG_INTERIOR" alt="Cockpit"><div class="no">001</div>
+          <div class="inf"><h3>The<br>First Run</h3><div class="d"><span><b>14</b> MACHINES</span><span><b>19</b> PEOPLE</span><span><b>83</b> KM</span></div></div></article>
+        <article class="card"><img src="assets/img/audi-r8.jpg" alt="R8"><div class="no">002</div>
+          <div class="inf"><h3>Monsoon</h3><div class="d"><span><b>21</b> MACHINES</span><span><b>28</b> PEOPLE</span><span><b>117</b> KM</span></div></div></article>
+        <article class="card"><img data-k="TOLL_GROUP" alt="Night run"><div class="no">003</div>
+          <div class="inf"><h3>The<br>Night Run</h3><div class="d"><span><b>27</b> MACHINES</span><span><b>34</b> PEOPLE</span><span><b>164</b> KM</span></div></div></article>
+        <article class="card"><img data-k="PARKING_NIGHT" alt="Radio Silence"><div class="no">004</div>
+          <div class="inf"><h3>Radio<br>Silence</h3><div class="d"><span><b>—</b> MACHINES</span><span><b>—</b> PEOPLE</span><span>UNSCHEDULED</span></div></div></article>
+      </div>
+      <div class="pbar"><i id="pbar"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 DETAIL -->
+<section class="sec" id="detail">
+  <div class="shead"><span class="n">03 — The Detail</span><span class="t">Form / Engineering</span></div>
+  <h2 class="stmt rv">Fifty metres away<br>it's just a car.</h2>
+  <div class="trip">
+    <figure class="rv">
+      <div class="fr"><img data-k="AMG_WHEEL" alt="Wheel detail"><div class="idx">001</div></div>
+      <figcaption><b>Wheel</b><span>19 IN · AMG</span></figcaption>
+    </figure>
+    <figure class="rv">
+      <div class="fr"><img data-k="MERC_COCKPIT" alt="Cockpit detail"><div class="idx">002</div></div>
+      <figcaption><b>Cockpit</b><span>01:42 · LOW LIGHT</span></figcaption>
+    </figure>
+    <figure class="rv">
+      <div class="fr"><img data-k="MG_INTERIOR" alt="Interior detail"><div class="idx">003</div></div>
+      <figcaption><b>Interior</b><span>RED · STITCH</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote">
+  <div class="bg" id="qbg"></div>
+  <div class="q">Everyone sees<br>the <em>car.</em><br>Nobody sees<br>the drive.</div>
+</section>
+
+<!-- 04 ARCHIVE TEASE -->
+<section class="sec">
+  <div class="shead"><span class="n">04 — The Archive</span><span class="t">Every Frame, Kept</span></div>
+  <h2 class="stmt rv">The whole<br>thing, on record.</h2>
+  <div class="gt">
+    <figure class="clipv"><img data-k="PORSCHE_TAIL" alt="Night frame"></figure>
+    <figure class="clipv"><img data-k="TOLL_DRONE" alt="Toll plaza"></figure>
+    <figure class="clipv"><img data-k="AMG_WHEEL" alt="Wheel"></figure>
+    <figure class="clipv"><img data-k="MERC_COCKPIT" alt="Cockpit"></figure>
+    <figure class="clipv"><img data-k="MG_INTERIOR" alt="Interior"></figure>
+  </div>
+  <a class="btn solid" href="gallery.html" style="margin-top:30px">OPEN THE FULL ARCHIVE →</a>
+</section>
+
+<!-- 05 ACCESS -->
+<section id="access">
+  <div class="k">05 — Access / By Introduction Only</div>
+  <div class="big">You don't<br><span>apply.</span><br>You get<br><span>invited.</span></div>
+  <p>There is no public enrolment. No membership counter. No waiting list you can buy your way up. Solus grows through the people already inside it.</p>
+  <div class="led">
+    <div><span>Intake status</span><b>CLOSED</b></div>
+    <div><span>Route in</span><b>INTRODUCTION</b></div>
+    <div><span>Open applications</span><b>NOT ACCEPTED</b></div>
+    <div><span>Exceptions made</span><b>NONE TO DATE</b></div>
+  </div>
+  <a class="btn" href="access.html">REQUEST CONSIDERATION →</a>
+</section>
+</main>
+
+<footer>
+  <div class="fmark"><div class="t"><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span></div></div>
+  <div class="fbar">
+    <span>© MMXXVI SOLUS</span><span>DRIVE. MACHINES. PEOPLE.</span>
+    <a href="gallery.html">ARCHIVE</a><a href="access.html">ACCESS</a>
+    <a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+  </div>
+</footer>
+
+<script>
+var IMG = {"MERC_COCKPIT": "assets/img/merc-cockpit.jpg", "PARKING_NIGHT": "assets/img/parking-night.jpg", "PORSCHE_911": "assets/img/porsche-911.jpg", "PORSCHE_TAIL": "assets/img/porsche-tail.jpg", "TOLL_DRONE": "assets/img/toll-drone.jpg", "TOLL_GROUP": "assets/img/toll-group.jpg", "AMG_WHEEL": "assets/img/amg-wheel.jpg", "AUDI_R8": "assets/img/audi-r8.jpg", "MG_INTERIOR": "assets/img/mg-interior.jpg", "LOGO": "assets/img/logo.png", "FAVICON": "assets/img/favicon.png"};
+var HERO=IMG.PORSCHE_TAIL,QB=IMG.TOLL_DRONE;
+document.querySelectorAll('[data-k]').forEach(function(e){if(e.tagName==='IMG')e.src=IMG[e.dataset.k]});
+document.getElementById('hbg').style.backgroundImage='url('+HERO+')';
+document.getElementById('cut').style.backgroundImage='url('+QB+')';
+document.getElementById('qbg').style.backgroundImage='url('+QB+')';
+
+/* ---------- LOADER ---------- */
+var frames=[IMG.PORSCHE_TAIL,IMG.TOLL_GROUP,IMG.AUDI_R8,IMG.MERC_COCKPIT,IMG.PARKING_NIGHT,IMG.AMG_WHEEL];
+var fl=document.getElementById('flash'),cnt=document.getElementById('cnt'),lbar=document.getElementById('lbar');
+var n=0,fi=0;
+var flick=setInterval(function(){fl.style.backgroundImage='url('+frames[fi++%frames.length]+')'},110);
+var tick=setInterval(function(){
+  n+=Math.random()*9+3; if(n>=100){n=100;clearInterval(tick);clearInterval(flick);setTimeout(toEnter,320)}
+  cnt.textContent=('00'+Math.floor(n)).slice(-3); lbar.style.width=n+'%';
+},95);
+function toEnter(){
+  document.getElementById('load').style.display='none';
+  document.getElementById('enter').classList.add('show');
+}
+/* letters */
+(function(){var w=document.getElementById('word');
+  'SOLUS'.split('').forEach(function(c,i){var s=document.createElement('span');s.textContent=c;s.style.transitionDelay=(i*.07)+'s';w.appendChild(s)});})();
+
+/* ---------- SCROLL TO ENTER ---------- */
+var entered=false;
+function enter(){
+  if(entered)return;entered=true;
+  var sl=document.getElementById('slats'),ds=sl.children;
+  for(var i=0;i<ds.length;i++)ds[i].style.transitionDelay=(i*.055)+'s';
+  document.getElementById('enter').classList.remove('show');
+  sl.classList.add('gone');
+  document.body.classList.remove('lock');
+  setTimeout(function(){sl.remove();document.getElementById('enter').remove()},1500);
+}
+addEventListener('wheel',function(e){if(!entered){e.preventDefault();if(e.deltaY>1)enter()}},{passive:false});
+addEventListener('touchmove',function(e){if(!entered){e.preventDefault();enter()}},{passive:false});
+addEventListener('keydown',function(e){if(!entered&&['ArrowDown','PageDown','Enter',' '].indexOf(e.key)>-1){e.preventDefault();enter()}});
+document.getElementById('prompt').onclick=enter;
+
+/* ---------- CURSOR ---------- */
+var cu=document.getElementById('cur'),cd=document.getElementById('curDot'),cx=0,cy=0,tx=0,ty=0;
+addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;cd.style.transform='translate('+tx+'px,'+ty+'px)'});
+(function loop(){cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;cu.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop)})();
+function hoverable(el,label){el.addEventListener('mouseenter',function(){cu.classList.add('big');cu.querySelector('b').textContent=label});
+  el.addEventListener('mouseleave',function(){cu.classList.remove('big')})}
+document.querySelectorAll('a,button').forEach(function(e){hoverable(e,'GO')});
+document.querySelectorAll('.card').forEach(function(e){hoverable(e,'DRIVE')});
+document.querySelectorAll('.gt figure').forEach(function(e){hoverable(e,'VIEW')});
+
+/* ---------- DRAWER ---------- */
+var dr=document.getElementById('drawer');
+document.getElementById('mOpen').onclick=function(){dr.classList.add('open')};
+document.getElementById('mClose').onclick=function(){dr.classList.remove('open')};
+dr.querySelectorAll('.dnav a').forEach(function(a){a.onclick=function(){dr.classList.remove('open')}});
+
+/* ---------- REVEAL ---------- */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting){e.target.classList.add('on');
+    if(e.target.hasAttribute('data-scramble'))scramble(e.target);
+    if(e.target.classList.contains('counts'))e.target.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.rv,.clipv').forEach(function(e,i){e.style.transitionDelay=(i%5*.07)+'s';io.observe(e)});
+
+/* counters */
+function countUp(el){var t=parseInt(el.dataset.count,10),s=null,pad=el.dataset.count.length;
+  function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1200,1);var v=Math.floor(t*(1-Math.pow(1-p,3)));
+    el.textContent=('00'+v).slice(-pad);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+
+/* scramble */
+function scramble(el){var CH='ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&/0123456789';
+  var nodes=[];(function walk(p){[].forEach.call(p.childNodes,function(nd){
+    if(nd.nodeType===3&&nd.nodeValue.trim())nodes.push(nd);else if(nd.nodeType===1)walk(nd)})})(el);
+  nodes.forEach(function(nd){var real=nd.nodeValue,len=real.length,f=0;
+    var iv=setInterval(function(){f++;var out='';
+      for(var i=0;i<len;i++){out+= (i<f*1.4||real[i]===' ') ? real[i] : CH[Math.floor(Math.random()*CH.length)]}
+      nd.nodeValue=out; if(f*1.4>len){clearInterval(iv);nd.nodeValue=real}},28)})}
+
+/* ---------- SCROLL ENGINE ---------- */
+var row1=document.getElementById('row1'),row2=document.getElementById('row2'),vm=document.getElementById('vm');
+var off1=0,off2=0,base=.55,last=0,vel=0,smooth=0;
+var pin=document.getElementById('pin'),track=document.getElementById('track'),pbar=document.getElementById('pbar');
+var hbg=document.getElementById('hbg'),qbg=document.getElementById('qbg');
+var velEl=document.getElementById('vel'),pctEl=document.getElementById('pct');
+var hudL=document.getElementById('hudL'),hudR=document.getElementById('hudR');
+
+function w1(){return row1.scrollWidth/2}
+function w2(){return row2.scrollWidth/2}
+
+function frame(){
+  var y=scrollY;
+  vel=y-last;last=y;
+  smooth+=(vel-smooth)*.12;
+  var sp=base+Math.min(Math.abs(smooth)*.22,18);
+  var dir=smooth<-1?-1:1;
+  off1-=sp*dir; off2+=sp*dir*.72;
+  var a=w1(),b=w2();
+  if(a){off1=off1%a; if(off1>0)off1-=a}
+  if(b){off2=off2%b; if(off2<-b)off2+=b; if(off2>0)off2-=b}
+  row1.style.transform='translateX('+off1+'px)';
+  row2.style.transform='translateX('+off2+'px)';
+  vm.style.transform='skewY('+Math.max(-2.2,Math.min(2.2,smooth*.045))+'deg)';
+
+  /* parallax */
+  if(hbg){var hr=hbg.parentElement.getBoundingClientRect();
+    if(hr.bottom>0&&hr.top<innerHeight)hbg.style.transform='translateY('+(-hr.top*.18)+'px)'}
+  if(qbg){var qr=qbg.parentElement.getBoundingClientRect();
+    if(qr.bottom>0&&qr.top<innerHeight)qbg.style.transform='translateY('+((innerHeight-qr.top)*.06-40)+'px)'}
+
+  /* pinned horizontal */
+  if(pin&&innerWidth>860){
+    var r=pin.getBoundingClientRect(),h=pin.offsetHeight-innerHeight;
+    var p=Math.max(0,Math.min(1,-r.top/h));
+    var dist=track.scrollWidth-innerWidth+40;
+    track.style.transform='translateX('+(-p*dist)+'px)';
+    if(pbar)pbar.style.width=(p*100)+'%';
+  }
+  /* hud */
+  if(velEl)velEl.textContent=(Math.abs(smooth)/10).toFixed(2);
+  var mx=document.body.scrollHeight-innerHeight;
+  if(pctEl)pctEl.textContent=('00'+Math.round(Math.min(100,y/(mx||1)*100))).slice(-3);
+  var nearEnd=(mx-y)<260?'0':'1';
+  if(hudL.style.opacity!==nearEnd){hudL.style.opacity=nearEnd;hudR.style.opacity=nearEnd}
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+
+</script></body></html>

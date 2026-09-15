@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>SOLUS — Drive. Machines. People.</title>
+<meta name="description" content="SOLUS — a private automotive collective.">
+<style>
+:root{
+  --bg:#050505; --paper:#f2f0e9; --muted:#9a988f; --line:#292925;
+  --red:#ed1424; --blue:#2b5cff; --acid:#bfff00; --orange:#ff6415; --violet:#8738ff;
+  --steel:#b9bec6; --ink:#070707;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--paper);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}button,input{font:inherit}
+::selection{background:var(--acid);color:#000}
+.mono{font-family:"Courier New",monospace}
+.serif{font-family:Georgia,"Times New Roman",serif;font-style:italic}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:200;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.topbar{position:fixed;inset:0 0 auto;z-index:100;padding:16px 20px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:#fff;mix-blend-mode:difference;font:11px "Courier New",monospace;letter-spacing:.13em;text-transform:uppercase}
+.topbar .center{font-weight:700;letter-spacing:.22em}.topbar .right{text-align:right}.menu{border:0;background:none;color:#fff;cursor:pointer;font:inherit}
+.topbarLogo{height:24px;width:auto;display:none}
+.hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);border-bottom:1px solid var(--line)}
+.heroLeft{min-width:0;padding:100px 5vw 28px;display:flex;flex-direction:column;justify-content:space-between;gap:50px}
+.kicker,.meta,.eyebrow{font:11px "Courier New",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.heroTitle{font-size:clamp(64px,9.8vw,168px);line-height:.86;letter-spacing:-.075em;font-weight:900;text-transform:uppercase;overflow-wrap:normal;max-width:900px}
+.heroTitle span{display:block;white-space:nowrap}.heroTitle .red{color:var(--red)}.heroTitle .blue{color:var(--blue)}.heroTitle .orange{color:var(--orange)}
+.heroMeta{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;font:11px "Courier New",monospace;text-transform:uppercase;letter-spacing:.08em}.heroMeta strong{font-size:16px;color:var(--paper)}
+.heroVisual{position:relative;border-left:1px solid var(--line);background:#101010;min-height:560px}.heroVisual>img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(1.42) contrast(1.06)}
+.heroVisual:after{content:"SOLUS / DRIVE 001";position:absolute;left:18px;bottom:18px;background:var(--acid);color:#000;padding:8px 10px;font:10px "Courier New",monospace;letter-spacing:.1em}
+.heroLogo{position:absolute;z-index:3;width:min(31vw,330px);right:5vw;top:14vh;mix-blend-mode:screen}.heroLogo img{width:100%;height:auto;object-fit:contain}
+.marquee{overflow:hidden;border-bottom:1px solid var(--line);border-top:1px solid var(--line);padding:12px 0;white-space:nowrap;font:700 17px "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase}
+.marquee .track{display:inline-flex;gap:42px;animation:scroll 28s linear infinite}.red{color:var(--red)}.blue{color:var(--blue)}.acid{color:var(--acid)}.orange{color:var(--orange)}.violet{color:var(--violet)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.section{padding:105px 5vw;border-bottom:1px solid var(--line);overflow:clip}.section.blueBg{background:var(--blue);color:#000}.section.orangeBg{background:var(--orange);color:#000}.section.acidBg{background:var(--acid);color:#000}.section.violetBg{background:var(--violet);color:#fff}
+.sectionHead{display:flex;justify-content:space-between;align-items:baseline;gap:20px;border-bottom:2px solid currentColor;padding-bottom:13px;margin-bottom:52px;font:11px "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}
+.sectionHead span:last-child{text-align:right}
+.bigStatement{font-size:clamp(54px,7.3vw,132px);line-height:.88;letter-spacing:-.065em;font-weight:900;text-transform:uppercase;max-width:1180px}.bigStatement .serif{font-weight:400}
+.split{display:grid;grid-template-columns:minmax(0,.76fr) minmax(0,1.24fr);gap:34px;align-items:end;margin-top:68px}.copy{font-size:clamp(18px,1.7vw,25px);line-height:1.18;max-width:620px}.copy small{display:block;margin-bottom:18px;font:11px "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}
+.frame{position:relative;background:#111;min-height:520px;border:1px solid rgba(255,255,255,.23);overflow:hidden}.frame img{width:100%;height:100%;object-fit:cover}.frame .tag{position:absolute;top:14px;left:14px;background:#000;color:#fff;padding:7px 9px;font:10px "Courier New",monospace;letter-spacing:.09em}
+.driveGrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}.drive{position:relative;min-height:58vw;max-height:760px;overflow:hidden;background:#111}.drive:nth-child(1),.drive:nth-child(4){grid-column:span 7}.drive:nth-child(2),.drive:nth-child(3){grid-column:span 5;min-height:42vw;max-height:560px}.drive img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .8s}.drive:hover img{transform:scale(1.045);filter:saturate(1.25)}
+.driveInfo{position:absolute;inset:auto 0 0;padding:24px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.9));display:flex;justify-content:space-between;align-items:end;gap:20px}.driveInfo h3{font-size:clamp(34px,5vw,74px);line-height:.88;letter-spacing:-.06em;text-transform:uppercase}.driveInfo .mono{font-size:10px;line-height:1.5;text-align:right;white-space:nowrap}
+.machineWrap{display:grid;grid-template-columns:minmax(170px,.27fr) minmax(0,.73fr);gap:34px}.machineIndex{font:11px "Courier New",monospace;text-transform:uppercase;position:sticky;top:90px;height:max-content}.machineIndex div{display:flex;justify-content:space-between;gap:15px;border-top:1px solid rgba(0,0,0,.25);padding:12px 0}.machineIndex div:last-child{border-bottom:1px solid rgba(0,0,0,.25)}
+.machine{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(270px,.95fr);min-height:680px;background:#000;color:#fff}.machineImage{min-height:680px}.machineImage img{width:100%;height:100%;object-fit:cover}.machineText{padding:36px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-width:0}.machineText h3{font-size:clamp(64px,8vw,132px);line-height:.8;letter-spacing:-.075em;text-transform:uppercase;overflow-wrap:anywhere}.specs{font:11px "Courier New",monospace}.specs div{display:grid;grid-template-columns:1fr 1fr;gap:16px;border-top:1px solid #404040;padding:10px 0}.specs div:last-child{border-bottom:1px solid #404040}
+/* LARGE GALLERY */
+.galleryHeader{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.galleryTools{display:flex;flex-wrap:wrap;gap:8px}.galleryBtn{border:1px solid currentColor;background:transparent;color:inherit;padding:11px 14px;font:10px "Courier New",monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.galleryBtn:hover{background:#000;color:#fff}.galleryHint{max-width:650px;color:#a9a79e;font:11px/1.45 "Courier New",monospace}
+.galleryGrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-flow:dense;gap:10px}.g{position:relative;min-height:440px;overflow:hidden;background:#0c0c0c;border:1px solid #252525}.g:nth-child(5n+1){grid-column:span 7;grid-row:span 2}.g:nth-child(5n+2){grid-column:span 5}.g:nth-child(5n+3){grid-column:span 5}.g:nth-child(5n+4){grid-column:span 7}.g:nth-child(5n){grid-column:span 5}.g img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease,filter .55s ease}.g:hover img{transform:scale(1.035);filter:saturate(1.18)}.g:before{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:var(--c,#fff);z-index:2}.g figcaption{position:absolute;left:12px;bottom:12px;background:#050505;color:#fff;padding:8px 10px;font:10px "Courier New",monospace;letter-spacing:.1em;text-transform:uppercase;z-index:3}
+.g.red{--c:var(--red)}.g.blue{--c:var(--blue)}.g.orange{--c:var(--orange)}.g.acid{--c:var(--acid)}.g.violet{--c:var(--violet)}.g.steel{--c:var(--steel)}
+.people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.person{min-height:540px;position:relative;overflow:hidden;background:#111}.person:nth-child(2){transform:translateY(34px)}.person:nth-child(3){transform:translateY(-18px)}.person:nth-child(4){transform:translateY(55px)}.person img{width:100%;height:100%;object-fit:cover;filter:saturate(1.12)}.personInfo{position:absolute;left:0;right:0;bottom:0;padding:15px;background:linear-gradient(transparent,rgba(0,0,0,.9));color:#fff}.personInfo strong{display:block;font-size:18px;text-transform:uppercase}.personInfo span{font:10px "Courier New",monospace;letter-spacing:.08em}
+.archive{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(240px,.9fr);gap:30px;align-items:end}.archive .label{font:10px "Courier New",monospace;letter-spacing:.1em;text-transform:uppercase}.archiveTitle{font-size:clamp(92px,15vw,245px);line-height:.78;letter-spacing:-.085em;text-transform:uppercase;font-weight:900}.archiveSide{font-size:clamp(18px,1.8vw,28px);line-height:1.05}.filmCard{margin-top:48px;border:1px solid rgba(255,255,255,.4);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);min-height:620px}.filmImage{min-height:620px;position:relative}.filmImage img{width:100%;height:100%;object-fit:cover}.play{position:absolute;right:20px;bottom:20px;width:74px;height:74px;border:2px solid #fff;border-radius:50%;display:grid;place-items:center;font:10px "Courier New",monospace}.filmMeta{padding:30px;display:flex;flex-direction:column;justify-content:space-between;gap:30px}.filmMeta h3{font-size:clamp(54px,7vw,112px);line-height:.8;letter-spacing:-.075em;text-transform:uppercase}.filmMeta p{font:11px/1.55 "Courier New",monospace;max-width:430px}
+.access{min-height:100svh;display:grid;place-items:center;padding:110px 5vw;position:relative;text-align:center;overflow:hidden}.access:before{content:"ACCESS";position:absolute;font-size:36vw;line-height:.68;letter-spacing:-.11em;color:rgba(255,255,255,.035);font-weight:900}.accessInner{position:relative;z-index:2;max-width:1250px}.accessTitle{font-size:clamp(72px,10.5vw,175px);line-height:.8;letter-spacing:-.085em;text-transform:uppercase;font-weight:900}.accessTitle .inv{color:var(--red)}.accessCopy{max-width:700px;margin:38px auto 0;font-size:clamp(18px,1.8vw,26px);line-height:1.16;color:#bcbab2}.accessBtn{display:inline-block;margin-top:34px;border:2px solid #fff;background:#fff;color:#000;padding:15px 20px;font:10px "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}.accessBtn:hover{background:var(--acid);border-color:var(--acid)}
+.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:36px 5vw;font:10px "Courier New",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+/* drawer */
+.drawer{position:fixed;inset:0;z-index:150;background:#050505;color:#fff;transform:translateY(-100%);transition:transform .45s cubic-bezier(.76,0,.24,1);padding:90px 5vw 50px;overflow:auto}.drawer.open{transform:translateY(0)}.drawerTop{display:flex;justify-content:space-between;align-items:center;font:11px "Courier New",monospace;letter-spacing:.12em}.close{border:1px solid #555;background:none;color:#fff;padding:10px 13px;cursor:pointer}.drawerNav{margin-top:70px;display:grid;gap:8px}.drawerNav a{font-size:clamp(42px,7vw,105px);line-height:.88;letter-spacing:-.07em;text-transform:uppercase}.drawerNav a:hover{color:var(--acid)}
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:180;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;padding:35px}.lightbox.open{display:flex}.lightbox img{max-height:90vh;max-width:92vw;width:auto;height:auto;object-fit:contain}.lbClose{position:absolute;right:20px;top:18px;border:1px solid #555;background:#000;color:#fff;padding:10px 13px;font:11px "Courier New",monospace;cursor:pointer}.lbCaption{position:absolute;left:24px;bottom:20px;background:#fff;color:#000;padding:8px 10px;font:10px "Courier New",monospace;text-transform:uppercase}
+.dropzone{position:fixed;right:18px;bottom:18px;z-index:80;background:#fff;color:#000;border:2px solid #000;padding:10px 12px;display:none;font:10px "Courier New",monospace;box-shadow:6px 6px 0 var(--red)}.dropzone.show{display:block}
+.galleryGrid.empty{display:block}.galleryGrid.empty:before{content:"No additional images loaded — use LOAD YOUR GALLERY to add a folder of photos.";display:block;padding:50px;border:1px dashed #444;color:#888;font:12px/1.5 "Courier New",monospace;text-transform:uppercase;letter-spacing:.08em}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.on{opacity:1;transform:none}
+@media(max-width:1050px){.hero{grid-template-columns:1fr}.heroVisual{min-height:64vh;border-left:0;border-top:1px solid var(--line)}.heroLogo{width:min(48vw,330px);right:5vw}.split,.machineWrap,.archive{grid-template-columns:1fr}.machineIndex{position:static;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.machineIndex div{border:1px solid rgba(0,0,0,.25);padding:10px}.machine{grid-template-columns:1fr;}.machineImage{min-height:55vh}.machineText{min-height:400px}.people{grid-template-columns:repeat(2,minmax(0,1fr))}.person{min-height:58vh}.person:nth-child(n){transform:none}.filmCard{grid-template-columns:1fr}.filmImage{min-height:58vh}}
+@media(max-width:760px){.topbar{grid-template-columns:1fr auto}.topbar .center{display:none}.topbarLogo{display:block}.heroLeft{padding:88px 22px 22px}.heroTitle{font-size:clamp(58px,15vw,104px);line-height:.86}.heroTitle span{white-space:normal}.heroVisual{min-height:55vh}.heroLogo{width:42vw;top:10vh}.section{padding:72px 22px}.sectionHead{align-items:flex-start;flex-wrap:wrap;margin-bottom:34px}.sectionHead span:last-child{text-align:left}.bigStatement{font-size:clamp(48px,14vw,80px)}.driveGrid{grid-template-columns:1fr}.drive,.drive:nth-child(n){grid-column:auto;min-height:75vh;max-height:none}.driveInfo{padding:17px}.driveInfo h3{font-size:clamp(32px,11vw,58px)}.driveInfo .mono{font-size:9px}.machineIndex{grid-template-columns:1fr 1fr}.machine{min-height:0}.machineImage{min-height:55vh}.machineText{padding:24px}.people{grid-template-columns:1fr 1fr}.person{min-height:66vh}.archiveTitle{font-size:clamp(76px,22vw,150px)}.filmImage{min-height:55vh}.filmMeta{padding:24px}.galleryHeader{display:block}.galleryTools{margin-top:18px}.galleryGrid{grid-template-columns:1fr 1fr}.g:nth-child(n){grid-column:span 1;grid-row:span 1;min-height:58vh}.g:nth-child(3n+1){grid-row:span 2;min-height:70vh}.access{padding:90px 22px}.accessTitle{font-size:clamp(66px,16vw,120px)}.accessCopy{font-size:18px}.footer{padding:28px 22px}}
+@media(max-width:500px){.people{grid-template-columns:1fr}.person{min-height:70vh}.galleryGrid{grid-template-columns:1fr}.g:nth-child(n){min-height:66vh}.heroVisual{min-height:62vh}.heroLogo{width:54vw}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="topbar">
+  <div>SOLUS / 2026</div><div class="center">PRIVATE AUTOMOTIVE COLLECTIVE</div><div class="right"><button class="menu" id="menuOpen">MENU +</button></div>
+</div>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawerTop"><span>SOLUS / NAVIGATION</span><button class="close" id="menuClose">CLOSE ×</button></div>
+  <nav class="drawerNav">
+    <a href="#collective">01 — THE COLLECTIVE</a><a href="#drives">02 — THE DRIVES</a><a href="#machines">03 — THE MACHINES</a><a href="#gallery">04 — THE GALLERY</a><a href="#people">05 — THE PEOPLE</a><a href="#films">06 — SOLUS FILMS</a><a href="#access">07 — ACCESS</a>
+  </nav>
+</div>
+<main>
+<section class="hero">
+  <div class="heroLeft">
+    <div class="kicker">Bangalore / India / Est. 2026</div>
+    <div class="heroTitle"><span>DRIVE.</span><span class="red">MACHINES.</span><span class="blue">PEOPLE.</span></div>
+    <div class="heroMeta"><div><strong>THE PRIVATE SIDE OF AUTOMOTIVE CULTURE.</strong><br><span class="mono">A COLLECTIVE BUILT AROUND THE ROAD.</span></div><div class="mono">SCROLL ↓</div></div>
+  </div>
+  <div class="heroVisual"><img src="assets/gallery/embedded-03.jpg" alt="Solus car photograph"><div class="heroLogo"><img src="assets/solus-logo.png" alt="Solus logo"></div></div>
+</section>
+<div class="marquee"><div class="track"><span class="red">SOLUS</span><span>DRIVE /</span><span class="blue">MACHINES</span><span>PEOPLE /</span><span class="acid">PRIVATE COLLECTIVE</span><span>BANGALORE / INDIA</span><span class="orange">SOLUS</span><span>DRIVE /</span><span class="violet">ARCHIVE</span><span>INVITE ONLY</span><span class="red">SOLUS</span><span>DRIVE /</span><span class="blue">MACHINES</span><span>PEOPLE /</span><span class="acid">PRIVATE COLLECTIVE</span><span>BANGALORE / INDIA</span></div></div>
+
+<section class="section reveal" id="collective">
+  <div class="sectionHead"><span>01 — THE COLLECTIVE</span><span>NOISE / SIGNAL</span></div>
+  <div class="bigStatement">The car is only <span class="serif">half</span> the story.</div>
+  <div class="split"><div class="copy"><small>What is Solus?</small>We are a private automotive collective built around the part of driving that cannot be bought: the people you meet, the places you reach, and the stories that happen between them.</div><div class="frame"><img src="assets/gallery/embedded-04.jpg" alt="Solus cars gathered at night"><div class="tag">PEOPLE / MACHINE / 001</div></div></div>
+</section>
+
+<section class="section orangeBg reveal" id="drives">
+  <div class="sectionHead"><span>02 — THE DRIVES</span><span>FIELD NOTES / 001—004</span></div>
+  <div class="driveGrid">
+    <article class="drive"><img src="assets/gallery/embedded-01.jpg" alt="Night drive"><div class="driveInfo"><h3>Night<br>Shift</h3><div class="mono">DRIVE 004<br>BANGALORE / 23:17<br>41 MACHINES</div></div></article>
+    <article class="drive"><img src="assets/gallery/embedded-05.jpg" alt="Cars at a toll plaza"><div class="driveInfo"><h3>Monsoon<br>Run</h3><div class="mono">DRIVE 003<br>117 KM<br>FIELD ARCHIVE</div></div></article>
+    <article class="drive"><img src="assets/gallery/embedded-07.jpg" alt="Convoy on the road"><div class="driveInfo"><h3>First<br>Light</h3><div class="mono">DRIVE 002<br>05:42<br>ROAD READY</div></div></article>
+    <article class="drive"><img src="assets/gallery/embedded-06.jpg" alt="Night interior"><div class="driveInfo"><h3>After<br>Hours</h3><div class="mono">DRIVE 001<br>ORIGINAL RUN<br>ARCHIVED</div></div></article>
+  </div>
+</section>
+
+<section class="section acidBg reveal" id="machines">
+  <div class="sectionHead"><span>03 — THE MACHINES</span><span>GARAGE / 2026</span></div>
+  <div class="machineWrap"><div class="machineIndex"><div><span>01</span><span>BMW</span></div><div><span>02</span><span>PORSCHE</span></div><div><span>03</span><span>AMG</span></div><div><span>04</span><span>AUDI</span></div><div><span>05</span><span>+ MORE</span></div></div>
+  <div class="machine"><div class="machineImage"><img src="assets/gallery/embedded-09.jpg" alt="Automotive detail"></div><div class="machineText"><div><div class="kicker" style="color:#999">SOLUS / MACHINE 047</div><h3>AMG<br>GT</h3></div><div class="specs"><div><span>OWNER</span><span>MEMBER 047</span></div><div><span>STATUS</span><span>ROAD READY</span></div><div><span>COLOUR</span><span>GRAPHITE / SILVER</span></div><div><span>MEMBER SINCE</span><span>2025</span></div></div></div></div></div>
+</section>
+
+<section class="section reveal" id="gallery" style="background:#101010">
+  <div class="galleryHeader"><div><div class="sectionHead" style="border-bottom:0;padding-bottom:0;margin-bottom:8px"><span>04 — THE GALLERY</span><span>COLOUR / FORM / MOTION</span></div><div class="galleryHint">This gallery is intentionally built to scale. Keep dropping photos into your local gallery folder, or use the button to load an entire folder straight into the page.</div></div><div class="galleryTools"><button class="galleryBtn" id="loadFolder">LOAD YOUR GALLERY +</button><button class="galleryBtn" id="clearCustom">CLEAR LOADED</button><input id="folderInput" type="file" accept="image/*" multiple webkitdirectory directory hidden></div></div>
+  <div class="galleryGrid" id="galleryGrid"></div>
+</section>
+
+<section class="section reveal" id="people">
+  <div class="sectionHead"><span>05 — THE PEOPLE</span><span>MEMBERS / NOT NUMBERS</span></div>
+  <div class="people">
+    <article class="person"><img src="assets/gallery/embedded-04.jpg" alt="Solus member context"><div class="personInfo"><strong>Member / 027</strong><span>DRIVER / MACHINE / STORY</span></div></article>
+    <article class="person"><img src="assets/gallery/embedded-07.jpg" alt="Solus group context"><div class="personInfo"><strong>Member / 014</strong><span>DRIVER / MACHINE / STORY</span></div></article>
+    <article class="person"><img src="assets/gallery/embedded-05.jpg" alt="Solus gathering"><div class="personInfo"><strong>Member / 041</strong><span>DRIVER / MACHINE / STORY</span></div></article>
+    <article class="person"><img src="assets/gallery/embedded-01.jpg" alt="Solus drive context"><div class="personInfo"><strong>Member / 008</strong><span>DRIVER / MACHINE / STORY</span></div></article>
+  </div>
+</section>
+
+<section class="section blueBg reveal" id="films">
+  <div class="sectionHead"><span>06 — SOLUS FILMS</span><span>PLAY / ARCHIVE</span></div>
+  <div class="archive"><div><div class="archiveTitle">FILM</div><div class="label">SOLUS MOVING IMAGE ARCHIVE</div></div><div class="archiveSide">Not content. Documentation.<br><br>Every drive leaves a record.</div></div>
+  <div class="filmCard"><div class="filmImage"><img src="assets/gallery/embedded-05.jpg" alt="Solus convoy still"><div class="play">PLAY</div></div><div class="filmMeta"><div><div class="label">FILM 001 / 09:42</div><h3>Night<br>Shift</h3></div><p>Bangalore after midnight. Machines moving through the city. People finding the road again.</p></div></div>
+</section>
+
+<section class="access reveal" id="access"><div class="accessInner"><div class="kicker">07 — ACCESS / SOLUS</div><div class="accessTitle">You don't<br><span class="inv">apply.</span></div><div class="accessTitle">You get<br><span class="inv">invited.</span></div><p class="accessCopy">There is no public enrolment. No membership counter. No waiting list. Solus grows through the people already inside it.</p><a class="accessBtn" href="access.html">ENTER ACCESS →</a></div></section>
+</main>
+<footer class="footer"><span>© 2026 SOLUS</span><span>DRIVE. MACHINES. PEOPLE.</span><span>BANGALORE / INDIA</span><span>PRIVATE / BY INTRODUCTION</span></footer>
+
+<div class="lightbox" id="lightbox"><button class="lbClose" id="lbClose">CLOSE ×</button><img id="lbImg" alt=""><div class="lbCaption" id="lbCaption"></div></div>
+<div class="dropzone" id="dropzone">DROP IMAGES ANYWHERE TO ADD TO GALLERY</div>
+<script>
+const gallerySeed=[
+  ['assets/gallery/embedded-03.jpg','RED / MACHINE','red'],['assets/gallery/embedded-06.jpg','BLUE / NIGHT','blue'],['assets/gallery/embedded-04.jpg','ORANGE / CITY','orange'],['assets/gallery/embedded-01.jpg','YELLOW / MOTION','acid'],['assets/gallery/embedded-05.jpg','STEEL / CONVOY','steel'],['assets/gallery/embedded-07.jpg','VIOLET / PEOPLE','violet'],['assets/gallery/embedded-09.jpg','SILVER / DETAIL','steel'],['assets/gallery/embedded-02.jpg','BLUE / DRIVE','blue'],['assets/gallery/embedded-08.jpg','ORANGE / FORM','orange']
+];
+const galleryGrid=document.getElementById('galleryGrid');
+const loaded=[];
+function renderGallery(items){
+  galleryGrid.innerHTML='';
+  const all=[...gallerySeed,...loaded];
+  all.forEach((item,i)=>{
+    const [src,caption,accent]=item;
+    const f=document.createElement('figure'); f.className='g '+accent;
+    const im=document.createElement('img'); im.src=src; im.alt=caption; im.loading=i<8?'eager':'lazy';
+    const cap=document.createElement('figcaption'); cap.textContent=caption;
+    f.append(im,cap);
+    f.addEventListener('click',()=>openLightbox(src,caption));
+    galleryGrid.appendChild(f);
+  });
+}
+function fileToItem(file){
+  const url=URL.createObjectURL(file); const colours=['red','blue','orange','acid','violet','steel']; return [url,file.name,colours[loaded.length%colours.length]];
+}
+function addFiles(files){
+  [...files].filter(f=>f.type.startsWith('image/')).forEach(f=>loaded.push(fileToItem(f)));
+  renderGallery();
+  document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+}
+function openLightbox(src,cap){document.getElementById('lbImg').src=src;document.getElementById('lbCaption').textContent=cap;document.getElementById('lightbox').classList.add('open')}
+document.getElementById('lbClose').onclick=()=>document.getElementById('lightbox').classList.remove('open');
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')e.currentTarget.classList.remove('open')});
+document.getElementById('loadFolder').onclick=()=>document.getElementById('folderInput').click();
+document.getElementById('folderInput').addEventListener('change',e=>addFiles(e.target.files));
+document.getElementById('clearCustom').onclick=()=>{loaded.splice(0);renderGallery()};
+['dragenter','dragover'].forEach(evt=>document.addEventListener(evt,e=>{e.preventDefault();document.getElementById('dropzone').classList.add('show')}));
+['dragleave','drop'].forEach(evt=>document.addEventListener(evt,e=>{e.preventDefault();if(evt==='drop')addFiles(e.dataTransfer.files);setTimeout(()=>document.getElementById('dropzone').classList.remove('show'),200)}));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.07}); document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const drawer=document.getElementById('drawer'); document.getElementById('menuOpen').onclick=()=>{drawer.classList.add('open');drawer.setAttribute('aria-hidden','false')}; document.getElementById('menuClose').onclick=()=>{drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')}; document.querySelectorAll('.drawer a').forEach(a=>a.onclick=()=>drawer.classList.remove('open'));
+renderGallery();
+</script>
+</body></html>
