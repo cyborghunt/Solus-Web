@@ -10,7 +10,7 @@ actually sit and read.
 
 ```
 index.html       Homepage — loader, hero, collective, drives, detail, access CTA
-gallery.html      The Archive — a fixed, curated grid of 13 photos + lightbox
+gallery.html      The Archive — 5 drive sub-folders (71 curated frames) + lightbox
 access.html       "You don't apply, you get invited" + introduction request form
 terms.html        Terms & Conditions
 privacy.html      Privacy Policy
@@ -18,16 +18,13 @@ cookies.html      Cookie Policy (short — this site doesn't use cookies)
 copyright.html    Copyright, licensing, trademark notes
 assets/
   css/core.css      Shared design system: colors, type, motion, a11y, legal-page layout
-  img/              All photography + the logo + favicon, as plain files
+  img/              Photography organized by drive (Ferrari, First Ride, Night Run, Mercedes Benz, Underground)
   fonts/            Empty until you add Concielian — see fonts/README.txt
 ```
 
 ## What changed for v1
 
-- **Gallery is static now.** The old "load a folder" / drag-and-drop
-  feature is gone. The 13 photos in `assets/img/` are the real gallery;
-  to add more, add the image file and one more `<figure class="cell">`
-  block in `gallery.html` following the existing pattern.
+- **Gallery organized by Drive Folders:** The Archive is divided into five dedicated drives (The Ferrari Experience, The First Ride, The Night Run, The Mercedes Benz Experience, and The Underground) with interactive filter tabs and deep-linking from the homepage drives section.
 - **Four legal pages added**, linked from every footer. Read
   `privacy.html` and `cookies.html` especially before launch — they
   describe exactly what the site does and doesn't collect, and that's

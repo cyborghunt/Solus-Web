@@ -99,7 +99,7 @@ body.lock{overflow:hidden;height:100vh}
 
 /* ================= HORIZONTAL DRIVES ================= */
 #drives{background:var(--ink)}
-.pin{height:420vh;position:relative}
+.pin{height:520vh;position:relative}
 .pinner{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
 .ptop{display:flex;justify-content:space-between;padding:74px var(--pad) 0;font-family:var(--mono);
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);position:absolute;top:0;left:0;right:0}
@@ -110,9 +110,14 @@ body.lock{overflow:hidden;height:100vh}
 .card:hover img{filter:none;transform:scale(1.05)}
 .card .no{position:absolute;top:0;left:0;z-index:3;font-family:var(--display);font-size:clamp(60px,10vw,150px);
   line-height:.8;letter-spacing:-.04em;-webkit-text-stroke:1px rgba(244,241,230,.75);color:transparent;padding:10px 0 0 14px}
-.card .inf{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:20px;
-  background:linear-gradient(transparent,rgba(6,6,5,.94) 62%)}
-.card .inf h3{font-family:var(--display);font-size:clamp(28px,3.6vw,56px);line-height:.88;text-transform:uppercase;letter-spacing:-.025em}
+.card .inf{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:22px;
+  background:linear-gradient(transparent,rgba(6,6,5,.95) 55%)}
+.card .inf h3{font-family:var(--display);font-size:clamp(26px,3.2vw,50px);line-height:.88;text-transform:uppercase;letter-spacing:-.025em}
+.card .inf .drive-btn{margin-top:14px;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(6,6,5,.85);color:var(--bone);border:1px solid var(--rule);text-decoration:none;
+  transition:background .2s,color .2s,border-color .2s}
+.card:hover .drive-btn,.card .drive-btn:hover{background:var(--red);color:#000;border-color:var(--red)}
 .card .inf .d{margin-top:10px;display:flex;gap:18px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--bone2);flex-wrap:wrap}
 .card .inf .d b{color:var(--red);font-weight:500}
 .pbar{position:absolute;left:var(--pad);right:var(--pad);bottom:58px;height:1px;background:var(--rule)}
@@ -220,7 +225,7 @@ body.lock{overflow:hidden;height:100vh}
     <p class="under">PRIVATE AUTOMOTIVE COLLECTIVE / EST. MMXXVI</p>
   </div>
   <p class="corner c-l">THE CAR IS ONLY<br>HALF THE STORY.</p>
-  <p class="corner c-r"><b>110</b>MACHINES<br>82 MEMBERS<br>04 DRIVES</p>
+  <p class="corner c-r"><b>110</b>MACHINES<br>82 MEMBERS<br>05 DRIVES</p>
 </section>
 
 <div class="vm" id="vm" aria-hidden="true">
@@ -246,7 +251,7 @@ body.lock{overflow:hidden;height:100vh}
   <div class="counts rv">
     <div><b data-count="110">0</b><span>Machines</span></div>
     <div><b data-count="82">0</b><span>Members</span></div>
-    <div><b data-count="04">0</b><span>Archived Drives</span></div>
+    <div><b data-count="05">0</b><span>Archived Drives</span></div>
   </div>
 </section>
 
@@ -261,16 +266,48 @@ body.lock{overflow:hidden;height:100vh}
 <section id="drives">
   <div class="pin" id="pin">
     <div class="pinner">
-      <div class="ptop"><span class="n">02 / The Drives</span><span>FIELD ARCHIVE / 001-004 →</span></div>
+      <div class="ptop"><span class="n">02 / The Drives</span><span>FIELD ARCHIVE / 001-005 →</span></div>
       <div class="track" id="track">
-        <article class="card"><img src="assets/img/mg-interior.jpg" alt="MG interior at night, red leather and dashboard lights"><div class="no">001</div>
-          <div class="inf"><h3>The<br>First Run</h3></div></article>
-        <article class="card"><img src="assets/img/audi-r8.jpg" alt="Yellow Audi R8 driving past a highway barrier"><div class="no">002</div>
-          <div class="inf"><h3>Monsoon</h3></div></article>
-        <article class="card"><img src="assets/img/toll-group.jpg" alt="Club members and cars gathered at a highway toll plaza at night"><div class="no">003</div>
-          <div class="inf"><h3>The<br>Night Run</h3></div></article>
-        <article class="card"><img src="assets/img/parking-night.jpg" alt="Members standing around cars in a parking lot at night"><div class="no">004</div>
-          <div class="inf"><h3>Radio<br>Silence</h3></div></article>
+        <article class="card" data-href="gallery.html?drive=ferrari#ferrari">
+          <img src="assets/img/Ferrari/IMG20260124103102.jpg" alt="Ferrari on track, The Ferrari Experience" loading="lazy">
+          <div class="no">001</div>
+          <div class="inf">
+            <h3>The Ferrari<br>Experience</h3>
+            <a class="drive-btn" href="gallery.html?drive=ferrari#ferrari">OPEN FOLDER →</a>
+          </div>
+        </article>
+        <article class="card" data-href="gallery.html?drive=first#first">
+          <img src="assets/img/first/DSC_4445.jpg.jpeg" alt="Convoy run during The First Ride" loading="lazy">
+          <div class="no">002</div>
+          <div class="inf">
+            <h3>The First<br>Ride</h3>
+            <a class="drive-btn" href="gallery.html?drive=first#first">OPEN FOLDER →</a>
+          </div>
+        </article>
+        <article class="card" data-href="gallery.html?drive=night-run#night-run">
+          <img src="assets/img/night%20run/IMG06314.jpg" alt="Night run convoy and gathering" loading="lazy">
+          <div class="no">003</div>
+          <div class="inf">
+            <h3>The Night<br>Run</h3>
+            <a class="drive-btn" href="gallery.html?drive=night-run#night-run">OPEN FOLDER →</a>
+          </div>
+        </article>
+        <article class="card" data-href="gallery.html?drive=mercedes#mercedes">
+          <img src="assets/img/Mercedes%20Benz%20experience_/IMG_7382.JPG" alt="Mercedes Benz drive experience" loading="lazy">
+          <div class="no">004</div>
+          <div class="inf">
+            <h3>The Mercedes Benz<br>Experience</h3>
+            <a class="drive-btn" href="gallery.html?drive=mercedes#mercedes">OPEN FOLDER →</a>
+          </div>
+        </article>
+        <article class="card" data-href="gallery.html?drive=underground#underground">
+          <img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1562.JPG" alt="Underground meetup and machines" loading="lazy">
+          <div class="no">005</div>
+          <div class="inf">
+            <h3>The<br>Underground</h3>
+            <a class="drive-btn" href="gallery.html?drive=underground#underground">OPEN FOLDER →</a>
+          </div>
+        </article>
       </div>
       <div class="pbar" aria-hidden="true"><i id="pbar"></i></div>
     </div>
@@ -298,19 +335,8 @@ body.lock{overflow:hidden;height:100vh}
   <p class="q">Everyone sees<br>the <em>car.</em><br>Nobody sees<br>the drive.</p>
 </section>
 
-<section class="sec">
-  <div class="shead"><span class="n">04 / The Archive</span><span class="t">Every Frame, Kept</span></div>
-  <h2 class="stmt rv">The whole<br>thing, on record.</h2>
-  <div class="gt">
-    <figure class="rv"><img src="assets/img/porsche-tail.jpg" alt="Red Porsche rear at a fuel station at night"></figure>
-    <figure class="rv"><img src="assets/img/solus-plate.jpg" alt="Hand holding a SOLUS branded number plate in a parking lot"></figure>
-    <figure class="rv"><img src="assets/img/gas-station-911.jpg" alt="Red Porsche 911 parked under a fuel station canopy at night"></figure>
-  </div>
-  <a class="btn solid" href="gallery.html" style="margin-top:30px">OPEN THE FULL ARCHIVE →</a>
-</section>
-
 <section id="access">
-  <p class="k">05 / Access / By Introduction Only</p>
+  <p class="k">04 / Access / By Introduction Only</p>
   <h2 class="big">You don't<br><span>apply.</span><br>You get<br><span>invited.</span></h2>
   <p>There is no public enrolment. No membership counter. No waiting list you can buy your way up. Solus grows through the people already inside it.</p>
   <div class="led">
@@ -396,8 +422,17 @@ addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;cd.style.tran
 function hoverable(el,label){el.addEventListener('mouseenter',function(){cu.classList.add('big');cu.querySelector('b').textContent=label});
   el.addEventListener('mouseleave',function(){cu.classList.remove('big')})}
 document.querySelectorAll('a,button').forEach(function(e){hoverable(e,'GO')});
-document.querySelectorAll('.card').forEach(function(e){hoverable(e,'DRIVE')});
-document.querySelectorAll('.gt figure').forEach(function(e){hoverable(e,'VIEW')});
+document.querySelectorAll('.card').forEach(function(c){
+  hoverable(c,'OPEN');
+  c.addEventListener('click',function(e){
+    if(e.target.tagName==='A'||e.target.closest('a'))return;
+    var link=c.querySelector('.drive-btn')||c.getAttribute('data-href');
+    if(link){
+      if(typeof link==='string')window.location.href=link;
+      else link.click();
+    }
+  });
+});
 
 /* ---------- DRAWER ---------- */
 var dr=document.getElementById('drawer'),mOpen=document.getElementById('mOpen');
