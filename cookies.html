@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Solus does not currently use cookies. Here is why, and what would change that.">
+<meta name="theme-color" content="#060605">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<title>SOLUS / Cookie Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core.css">
+<style>
+.top{position:sticky;background:rgba(6,6,5,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);mix-blend-mode:normal}
+.top .mark{mix-blend-mode:normal}
+</style></head><body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="top">
+  <a class="mark" href="index.html"><img src="assets/img/logo.png" alt="Solus"></a>
+  <div class="mid">COOKIE POLICY</div>
+  <button class="menu" id="mOpen" aria-haspopup="true" aria-controls="drawer" aria-expanded="false">INDEX <i aria-hidden="true"></i></button>
+</header>
+
+<nav class="drawer" id="drawer" aria-label="Site navigation">
+  <button class="dclose" id="mClose" type="button">CLOSE ×</button>
+  <div class="dnav">
+    <a href="index.html"><i>01</i><span>Home</span></a>
+    <a href="index.html#drives"><i>02</i><span>Drives</span></a>
+    <a href="gallery.html"><i>03</i><span>Archive</span></a>
+    <a href="access.html"><i>04</i><span>Access</span></a>
+  </div>
+  <div class="dfoot"><span>BANGALORE / INDIA</span><a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a></div>
+</nav>
+
+<main id="main">
+<section class="legal">
+  <p class="kicker">Legal / Cookies</p>
+  <h1>Cookie Policy</h1>
+  <p class="updated">Last updated: October 2026</p>
+  <div class="body">
+
+<h2>This site does not use cookies</h2>
+<p>As of this build, Solus does not set any cookies. Not for analytics, not for advertising, not for remembering preferences, nothing. That's also why there's no cookie-consent banner on this site: under most privacy regulations (including India's DPDP Act and the EU's ePrivacy rules), a consent banner is required when a site sets non-essential cookies. Since none are set here, there's nothing to ask permission for, and adding a banner anyway would just be noise for no reason.</p>
+
+<h2>What about Google Fonts?</h2>
+<p>This site loads typefaces from Google Fonts (fonts.googleapis.com and fonts.gstatic.com). Google's font-delivery infrastructure is specifically built not to use cookies or log requests in a way that's tied to a Google account. So this doesn't introduce cookies either.</p>
+
+<h2>What would change this</h2>
+<p>If Solus ever adds something that genuinely needs cookies (visitor analytics to understand traffic, for instance, or a login system for members), this page will be updated first, and a proper consent banner will go up alongside that change, before it ships. We're not going to quietly start tracking people and leave this page saying "no cookies."</p>
+
+<h2>Browser-level control</h2>
+<p>Even though this site doesn't use cookies, most browsers let you block or clear cookies site-by-site if you want extra peace of mind in general web browsing, usually under Settings &#8594; Privacy in whichever browser you're using.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy can be sent through <a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">Instagram</a> for now.</p>
+
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <p class="fm">SOLUS</p>
+    <div class="fl">
+      <a href="gallery.html">ARCHIVE</a><a href="access.html">ACCESS</a>
+      <a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+    </div>
+  </div>
+  <div class="fbar">
+    <span>© MMXXVI SOLUS</span><span>DRIVE. MACHINES. PEOPLE.</span>
+    <span class="legal"><a href="terms.html">TERMS</a><a href="privacy.html">PRIVACY</a><a href="cookies.html">COOKIES</a><a href="copyright.html">COPYRIGHT</a></span>
+  </div>
+</footer>
+
+<script>
+var dr=document.getElementById('drawer'),mOpen=document.getElementById('mOpen');
+mOpen.onclick=function(){dr.classList.add('open');mOpen.setAttribute('aria-expanded','true')};
+document.getElementById('mClose').onclick=function(){dr.classList.remove('open');mOpen.setAttribute('aria-expanded','false')};
+dr.querySelectorAll('.dnav a').forEach(function(a){a.onclick=function(){dr.classList.remove('open');mOpen.setAttribute('aria-expanded','false')}});
+</script></body></html>

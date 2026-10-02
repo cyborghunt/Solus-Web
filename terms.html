@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Terms and conditions for the Solus website.">
+<meta name="theme-color" content="#060605">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<title>SOLUS / Terms &amp; Conditions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/core.css">
+<style>
+.top{position:sticky;background:rgba(6,6,5,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);mix-blend-mode:normal}
+.top .mark{mix-blend-mode:normal}
+</style></head><body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="top">
+  <a class="mark" href="index.html"><img src="assets/img/logo.png" alt="Solus"></a>
+  <div class="mid">TERMS &amp; CONDITIONS</div>
+  <button class="menu" id="mOpen" aria-haspopup="true" aria-controls="drawer" aria-expanded="false">INDEX <i aria-hidden="true"></i></button>
+</header>
+
+<nav class="drawer" id="drawer" aria-label="Site navigation">
+  <button class="dclose" id="mClose" type="button">CLOSE ×</button>
+  <div class="dnav">
+    <a href="index.html"><i>01</i><span>Home</span></a>
+    <a href="index.html#drives"><i>02</i><span>Drives</span></a>
+    <a href="gallery.html"><i>03</i><span>Archive</span></a>
+    <a href="access.html"><i>04</i><span>Access</span></a>
+  </div>
+  <div class="dfoot"><span>BANGALORE / INDIA</span><a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a></div>
+</nav>
+
+<main id="main">
+<section class="legal">
+  <p class="kicker">Legal / Terms</p>
+  <h1>Terms &amp; Conditions</h1>
+  <p class="updated">Last updated: October 2026</p>
+  <div class="body">
+
+<h2>1. What this is</h2>
+<p>This website is an informational site for Solus, a private automotive collective based in Bangalore, India. It exists to show who the collective is, archive its drives and photography, and explain how access works. It is not an e-commerce store, a booking platform, or a service you pay for, and it does not currently process payments or create user accounts.</p>
+
+<h2>2. Using the site</h2>
+<p>You're welcome to browse, read, and look through the archive. Please don't scrape the site, attempt to extract the photo archive in bulk, or misrepresent anything here as your own. The code structure is open for collaborators working on the project directly; see the <a href="copyright.html">Copyright</a> page for what that does and doesn't cover.</p>
+
+<h2>3. Browsing is not membership</h2>
+<p>Visiting this site, looking through the gallery, or submitting the introduction-request form on the <a href="access.html">Access</a> page does not make you a Solus member. Membership happens offline, through an existing member vouching for you. The form is a starting point for that conversation, not an application in the traditional sense, and submitting it carries no guarantee of a response.</p>
+
+<h2>4. Content and accuracy</h2>
+<p>Member counts, machine counts, and drive statistics shown on this site (for example, on the homepage and in the drive archive) are illustrative for this concept build and may not reflect exact live figures at all times. We try to keep them reasonably current but don't guarantee real-time accuracy.</p>
+
+<h2>5. Third-party links</h2>
+<p>This site links out to Instagram (<a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">@solusclub.blr</a>) and may link to other external pages from time to time. We aren't responsible for the content, availability, or policies of sites we don't control.</p>
+
+<h2>6. No warranties</h2>
+<p>This site is provided as-is. It's an evolving concept build, actively worked on, and things may change, break, or look different from one visit to the next while it's being developed. We make no promises that it will be error-free or available without interruption.</p>
+
+<h2>7. Limitation of liability</h2>
+<p>To the extent permitted by law, Solus and the people building this site aren't liable for any indirect or incidental loss arising from your use of it. Nothing here is intended to exclude liability that can't legally be excluded.</p>
+
+<h2>8. Changes to these terms</h2>
+<p>These terms may be updated as the site and the club evolve. The date at the top of this page reflects the last update. Continuing to use the site after a change means you accept the updated terms.</p>
+
+<h2>9. Governing law</h2>
+<p>These terms are governed by the laws of India. This is a small community project rather than a registered commercial entity at this stage, so treat this section as a statement of intent rather than a fully formalized legal framework.</p>
+
+<h2>10. Contact</h2>
+<p>Questions about these terms can be sent through <a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">Instagram</a> for now, until a dedicated contact address is set up.</p>
+
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <p class="fm">SOLUS</p>
+    <div class="fl">
+      <a href="gallery.html">ARCHIVE</a><a href="access.html">ACCESS</a>
+      <a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+    </div>
+  </div>
+  <div class="fbar">
+    <span>© MMXXVI SOLUS</span><span>DRIVE. MACHINES. PEOPLE.</span>
+    <span class="legal"><a href="terms.html">TERMS</a><a href="privacy.html">PRIVACY</a><a href="cookies.html">COOKIES</a><a href="copyright.html">COPYRIGHT</a></span>
+  </div>
+</footer>
+
+<script>
+var dr=document.getElementById('drawer'),mOpen=document.getElementById('mOpen');
+mOpen.onclick=function(){dr.classList.add('open');mOpen.setAttribute('aria-expanded','true')};
+document.getElementById('mClose').onclick=function(){dr.classList.remove('open');mOpen.setAttribute('aria-expanded','false')};
+dr.querySelectorAll('.dnav a').forEach(function(a){a.onclick=function(){dr.classList.remove('open');mOpen.setAttribute('aria-expanded','false')}});
+</script></body></html>

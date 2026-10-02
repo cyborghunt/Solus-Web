@@ -1,79 +1,81 @@
-# Solus — Website Concept
+# Solus — Website
 
-Concept build for the Solus website: homepage, the photo archive, and the
-access/application page. Black-and-red, loud, brutalist-leaning. This is a
-design concept meant to be built on, not a finished product — see **Status**
-below for what's real and what's a placeholder.
+v1-launch build. Homepage, photo archive, access page, and four legal
+pages. Black-and-red, loud on the homepage, calm on everything you'd
+actually sit and read.
 
-**Live pages:** open `index.html` in a browser. No build step, no install.
+**Open it:** `index.html` in a browser. No build step, no install.
 
 ## File structure
 
 ```
-index.html          Homepage — loader, hero, collective, drives, detail, access CTA
-gallery.html         The Archive — photo grid with load-folder / drag-drop / lightbox
-access.html          "You don't apply, you get invited" + introduction request form
+index.html       Homepage — loader, hero, collective, drives, detail, access CTA
+gallery.html      The Archive — a fixed, curated grid of 13 photos + lightbox
+access.html       "You don't apply, you get invited" + introduction request form
+terms.html        Terms & Conditions
+privacy.html      Privacy Policy
+cookies.html      Cookie Policy (short — this site doesn't use cookies)
+copyright.html    Copyright, licensing, trademark notes
 assets/
-  css/core.css        Shared design system: colors, type, buttons, cursor, drawer nav
-  img/                All photography + the logo, as plain files (not base64)
+  css/core.css      Shared design system: colors, type, motion, a11y, legal-page layout
+  img/              All photography + the logo + favicon, as plain files
+  fonts/            Empty until you add Concielian — see fonts/README.txt
 ```
 
-Each HTML file also has a `<style>` block below the `core.css` link for
-page-specific layout — hero sizing, the gallery grid, the drives track, etc.
-`core.css` is the stuff shared by all three pages (color variables, type
-scale, the nav drawer, the custom cursor, buttons).
+## What changed for v1
 
-## Running it locally
-
-Just open `index.html` directly — everything is relative paths, no server
-needed. If you want it running on `localhost` (some browsers are stricter
-about local file access), from this folder run:
-
-```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
+- **Gallery is static now.** The old "load a folder" / drag-and-drop
+  feature is gone. The 13 photos in `assets/img/` are the real gallery;
+  to add more, add the image file and one more `<figure class="cell">`
+  block in `gallery.html` following the existing pattern.
+- **Four legal pages added**, linked from every footer. Read
+  `privacy.html` and `cookies.html` especially before launch — they
+  describe exactly what the site does and doesn't collect, and that's
+  only true as long as the site doesn't start quietly collecting more
+  than that.
+- **Concielian font is wired up but not active.** `core.css` asks for
+  it first and falls back to Anton until the actual font files are
+  dropped into `assets/fonts/`. Full instructions in that folder's
+  README, including the commercial-use licensing note.
+- **Accessibility pass:** color contrast fixed (the muted grey text
+  was failing WCAG AA, now passes), every image has real alt text,
+  keyboard users get a visible "skip intro" link, focus states are
+  visible, the custom cursor only hides the real one once JS has
+  actually loaded (so nobody loses their pointer if a script fails),
+  and `prefers-reduced-motion` is honored — the grain, loader flicker,
+  and marquee skew all calm down or stop for anyone with that OS
+  setting on.
+- **Calmer by default** even without that setting: background grain
+  is slower and fainter, the loader's flicker is slower (the old pace
+  was fast enough to be a real photosensitivity concern), and the
+  marquee skew on scroll is subtler.
 
 ## Status — what's real vs. placeholder
 
-- **Numbers are fake.** Member count (63), machine count (47), and every
-  drive's stats (machines / people / km) are placeholders. Search each file
-  for the numbers to find them, or grep: `grep -rn "MACHINES\|MEMBERS" *.html`
-- **The access form doesn't send anywhere.** Submitting it in `access.html`
-  fakes a "logged for review" response client-side. It needs to be wired to
-  an actual inbox, sheet, or form service (Formspree, a Google Form, etc.)
-  before it's real.
-- **The gallery's "load folder" and drag-drop features are session-only.**
-  Photos added that way live in browser memory and vanish on refresh —
-  nothing uploads anywhere. That's by design for a concept, but worth
-  deciding whether the real site needs actual persistence.
-- **Typography** is Anton + Inter + IBM Plex Mono, loaded from Google Fonts
-  in each file's `<head>`. Needs an internet connection to render as
-  intended; offline it falls back to Impact / Arial Narrow and still holds
-  together, just not as sharp.
+- Member count (63), machine count (47), and each drive's stats are
+  still placeholders. Search for `MACHINES` / `MEMBERS` in `index.html`.
+- The access form doesn't send anywhere yet — see `privacy.html`,
+  which says this plainly. Submitting it fakes a review confirmation
+  client-side only.
+- No cookie-consent banner, on purpose: the site sets zero cookies, so
+  there's nothing to get consent for. If analytics or a real backend
+  are added later, `cookies.html` needs updating *first*, and a
+  consent banner goes in at that point, not after.
 
-## Notes for whoever picks this up
+## Running it locally
 
-- Colors, spacing, and font variables all live at the top of `core.css` —
-  start there before touching anything else.
-- The custom cursor hides the real one everywhere except text inputs
-  (`cursor:none` in `core.css`). If that ever feels broken while you're
-  editing, check that rule first.
-- Images are already reasonably compressed for web (resized + JPEG quality
-  ~70-78). If you swap in new photography, keep an eye on file size —
-  nothing here should be pushing multiple megabytes per image.
-- No JS framework, no build step, no bundler — everything is vanilla
-  HTML/CSS/JS on purpose, so it's easy for anyone to jump in and edit
-  directly. If the project grows past three pages this will probably want
-  a proper framework and a build step; that's a good future conversation,
-  not a today problem.
+Just open `index.html`. If you want it on `localhost` instead of
+`file://`, from this folder:
+
+```bash
+python3 -m http.server 8000
+```
 
 ## Contributing
 
-Small project, so keeping it simple:
-
-- Work off `main` directly for small tweaks, or branch (`feature/whatever`)
-  for anything bigger and open a pull request.
-- Commit messages don't need to be formal — just say what changed.
-- If you're not sure whether a change is small or big, open a PR anyway;
-  costs nothing and makes it easy to look at a diff before it lands.
+- Small project — work off `main` for small tweaks, branch for
+  anything bigger.
+- Colors, type, and motion rules all live at the top of
+  `assets/css/core.css`. Start there.
+- No framework, no bundler, on purpose. Keep it that way unless the
+  site genuinely outgrows plain HTML/CSS/JS.

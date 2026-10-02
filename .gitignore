@@ -1,12 +1,15 @@
-# OS cruft
+# Operating System files
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Editors
+# Editor & IDE files
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Local servers / tooling, in case someone adds a build step later
+# Future builds / environment
 node_modules/
-.env
-*.log
+dist/
+.env*
