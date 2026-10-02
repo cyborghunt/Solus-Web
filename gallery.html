@@ -51,12 +51,9 @@
 .cell img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
   filter:grayscale(.45) contrast(1.08);transition:filter .45s,transform .8s cubic-bezier(.16,1,.3,1)}
 .cell:hover img,.cell:focus-visible img{filter:none;transform:scale(1.06)}
-.cell .no{position:absolute;z-index:3;left:12px;top:10px;font-family:var(--display);font-size:clamp(24px,3vw,48px);
-  line-height:1;-webkit-text-stroke:1px rgba(244,241,230,.8);color:transparent;letter-spacing:-.03em}
-.cell figcaption{position:absolute;z-index:3;left:0;bottom:0;background:var(--red);color:#000;padding:8px 12px;
-  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
-  transform:translateY(101%);transition:transform .3s cubic-bezier(.76,0,.24,1)}
-.cell:hover figcaption,.cell:focus-visible figcaption{transform:none}
+.cell .no{position:absolute;z-index:3;left:14px;top:12px;font-family:var(--display);font-size:clamp(26px,3.2vw,50px);
+  line-height:1;-webkit-text-stroke:1px rgba(244,241,230,.85);color:transparent;letter-spacing:-.03em;transition:color .3s, -webkit-text-stroke .3s}
+.cell:hover .no{color:var(--red);-webkit-text-stroke:1px var(--red)}
 
 .cell:nth-child(6n+1){grid-column:span 7;min-height:clamp(280px,38vw,560px)}
 .cell:nth-child(6n+2){grid-column:span 5;min-height:clamp(260px,32vw,480px)}
@@ -76,8 +73,8 @@
 .lb.open{display:grid}
 .lb img{max-width:92vw;max-height:76vh;object-fit:contain}
 .lb .x{position:absolute;top:18px;right:var(--pad)}
-.lb .cap{position:absolute;left:var(--pad);bottom:22px;font-family:var(--display);font-size:clamp(20px,3vw,44px);
-  line-height:.9;text-transform:uppercase;letter-spacing:-.02em;max-width:70vw}
+.lb .cap{position:absolute;left:var(--pad);bottom:22px;font-family:var(--display);font-size:clamp(22px,3.2vw,48px);
+  line-height:.92;text-transform:uppercase;letter-spacing:-.02em;max-width:70vw}
 .lb .cap small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--red);margin-bottom:6px}
 .lb .cnt{position:absolute;right:var(--pad);bottom:24px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
 .lb .nav{position:absolute;top:50%;transform:translateY(-50%);border:1px solid var(--rule);background:transparent;
@@ -157,15 +154,15 @@
       <div class="fcnt">09 FRAMES</div>
     </div>
     <div class="grid">
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260124103102.jpg" alt="Ferrari on track daylight staging" loading="lazy"><div class="no" aria-hidden="true">01</div><figcaption>FERRARI / STAGING</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/DSC09382.jpg" alt="Ferrari red profile and bodywork" loading="lazy"><div class="no" aria-hidden="true">02</div><figcaption>FERRARI / BODYWORK</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG-20260124-WA0006.jpg" alt="Ferrari cockpit and steering wheel" loading="lazy"><div class="no" aria-hidden="true">03</div><figcaption>FERRARI / COCKPIT</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260529191805.jpg" alt="Ferrari rolling at dusk" loading="lazy"><div class="no" aria-hidden="true">04</div><figcaption>FERRARI / DUSK RUN</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260607185800.jpg" alt="Ferrari rear and dual exhaust notes" loading="lazy"><div class="no" aria-hidden="true">05</div><figcaption>FERRARI / EXHAUST</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260607210145.jpg" alt="Ferrari arrival under city lights" loading="lazy"><div class="no" aria-hidden="true">06</div><figcaption>FERRARI / NIGHT ARRIVAL</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260607213442.jpg" alt="Ferrari night detail and illumination" loading="lazy"><div class="no" aria-hidden="true">07</div><figcaption>FERRARI / ILLUMINATION</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG_3678.jpg" alt="Ferrari Prancing Horse badge and fascia" loading="lazy"><div class="no" aria-hidden="true">08</div><figcaption>FERRARI / BADGE</figcaption></div></figure>
-      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/_MG_0015-6.jpg%20(1).jpeg" alt="Ferrari field drive high speed pace" loading="lazy"><div class="no" aria-hidden="true">09</div><figcaption>FERRARI / ROAD RUN</figcaption></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260124103102.jpg" alt="The Ferrari Experience - Frame 01" loading="lazy"><div class="no" aria-hidden="true">01</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/DSC09382.jpg" alt="The Ferrari Experience - Frame 02" loading="lazy"><div class="no" aria-hidden="true">02</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG-20260124-WA0006.jpg" alt="The Ferrari Experience - Frame 03" loading="lazy"><div class="no" aria-hidden="true">03</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260529191805.jpg" alt="The Ferrari Experience - Frame 04" loading="lazy"><div class="no" aria-hidden="true">04</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260607185800.jpg" alt="The Ferrari Experience - Frame 05" loading="lazy"><div class="no" aria-hidden="true">05</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260607210145.jpg" alt="The Ferrari Experience - Frame 06" loading="lazy"><div class="no" aria-hidden="true">06</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG20260607213442.jpg" alt="The Ferrari Experience - Frame 07" loading="lazy"><div class="no" aria-hidden="true">07</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/IMG_3678.jpg" alt="The Ferrari Experience - Frame 08" loading="lazy"><div class="no" aria-hidden="true">08</div></div></figure>
+      <figure class="cell" data-drive="The Ferrari Experience"><div class="fr"><img src="assets/img/Ferrari/_MG_0015-6.jpg%20(1).jpeg" alt="The Ferrari Experience - Frame 09" loading="lazy"><div class="no" aria-hidden="true">09</div></div></figure>
     </div>
   </section>
 
@@ -179,26 +176,26 @@
       <div class="fcnt">20 FRAMES</div>
     </div>
     <div class="grid">
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4445.jpg.jpeg" alt="Convoy pace during The First Ride" loading="lazy"><div class="no" aria-hidden="true">01</div><figcaption>FIRST RIDE / CONVOY</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC06874.JPG.jpeg" alt="Machines lined up at departure grid" loading="lazy"><div class="no" aria-hidden="true">02</div><figcaption>FIRST RIDE / GRID</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4366.jpg.jpeg" alt="Open highway acceleration" loading="lazy"><div class="no" aria-hidden="true">03</div><figcaption>FIRST RIDE / HIGHWAY</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4456%20(1).jpg.jpeg" alt="Lead machine cutting through morning air" loading="lazy"><div class="no" aria-hidden="true">04</div><figcaption>FIRST RIDE / LEAD</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4489.jpg.jpeg" alt="Barrier run along the bypass" loading="lazy"><div class="no" aria-hidden="true">05</div><figcaption>FIRST RIDE / BYPASS</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG-20251221-WA0034.jpg.jpeg" alt="Pre-dawn briefing and drivers" loading="lazy"><div class="no" aria-hidden="true">06</div><figcaption>FIRST RIDE / BRIEFING</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG-20251221-WA0138.jpg.jpeg" alt="Road roster gathered" loading="lazy"><div class="no" aria-hidden="true">07</div><figcaption>FIRST RIDE / ROSTER</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG-20251221-WA0148.jpg.jpeg" alt="Checkpoint regroup" loading="lazy"><div class="no" aria-hidden="true">08</div><figcaption>FIRST RIDE / CHECKPOINT</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG20250914190056.jpg.jpeg" alt="Fuel station stopover" loading="lazy"><div class="no" aria-hidden="true">09</div><figcaption>FIRST RIDE / FUEL STOP</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_20260214_001046.jpg.jpeg" alt="Midnight assembly before flag-off" loading="lazy"><div class="no" aria-hidden="true">10</div><figcaption>FIRST RIDE / MIDNIGHT</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_20260409_042947.jpg%20(1).jpeg" alt="04:30 AM cold morning start" loading="lazy"><div class="no" aria-hidden="true">11</div><figcaption>FIRST RIDE / 04:30 AM</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_20260409_042947.jpg.jpeg" alt="Tires warming on the asphalt" loading="lazy"><div class="no" aria-hidden="true">12</div><figcaption>FIRST RIDE / TIRES</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6109.JPG.jpeg" alt="Rolling shot on empty morning tarmac" loading="lazy"><div class="no" aria-hidden="true">13</div><figcaption>FIRST RIDE / ROLLING</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6674.jpg%20(1).jpeg" alt="Tail lights glowing through twilight" loading="lazy"><div class="no" aria-hidden="true">14</div><figcaption>FIRST RIDE / TAILS</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6674.JPG.jpeg" alt="Aerodynamic wing close view" loading="lazy"><div class="no" aria-hidden="true">15</div><figcaption>FIRST RIDE / AERO</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6684.jpg.jpeg" alt="Fast lane cruising" loading="lazy"><div class="no" aria-hidden="true">16</div><figcaption>FIRST RIDE / FAST LANE</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_7458.JPG" alt="Members regrouping at finish" loading="lazy"><div class="no" aria-hidden="true">17</div><figcaption>FIRST RIDE / FINISH</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/_ADI4467.JPG" alt="Morning light hitting body panels" loading="lazy"><div class="no" aria-hidden="true">18</div><figcaption>FIRST RIDE / MORNING</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/_ADI4468.JPG" alt="Carving through the highway apex" loading="lazy"><div class="no" aria-hidden="true">19</div><figcaption>FIRST RIDE / APEX</figcaption></div></figure>
-      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/_ADI4497.JPG" alt="Arrival at destination" loading="lazy"><div class="no" aria-hidden="true">20</div><figcaption>FIRST RIDE / ARRIVAL</figcaption></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4445.jpg.jpeg" alt="The First Ride - Frame 01" loading="lazy"><div class="no" aria-hidden="true">01</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC06874.JPG.jpeg" alt="The First Ride - Frame 02" loading="lazy"><div class="no" aria-hidden="true">02</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4366.jpg.jpeg" alt="The First Ride - Frame 03" loading="lazy"><div class="no" aria-hidden="true">03</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4456%20(1).jpg.jpeg" alt="The First Ride - Frame 04" loading="lazy"><div class="no" aria-hidden="true">04</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/DSC_4489.jpg.jpeg" alt="The First Ride - Frame 05" loading="lazy"><div class="no" aria-hidden="true">05</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG-20251221-WA0034.jpg.jpeg" alt="The First Ride - Frame 06" loading="lazy"><div class="no" aria-hidden="true">06</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG-20251221-WA0138.jpg.jpeg" alt="The First Ride - Frame 07" loading="lazy"><div class="no" aria-hidden="true">07</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG-20251221-WA0148.jpg.jpeg" alt="The First Ride - Frame 08" loading="lazy"><div class="no" aria-hidden="true">08</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG20250914190056.jpg.jpeg" alt="The First Ride - Frame 09" loading="lazy"><div class="no" aria-hidden="true">09</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_20260214_001046.jpg.jpeg" alt="The First Ride - Frame 10" loading="lazy"><div class="no" aria-hidden="true">10</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_20260409_042947.jpg%20(1).jpeg" alt="The First Ride - Frame 11" loading="lazy"><div class="no" aria-hidden="true">11</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_20260409_042947.jpg.jpeg" alt="The First Ride - Frame 12" loading="lazy"><div class="no" aria-hidden="true">12</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6109.JPG.jpeg" alt="The First Ride - Frame 13" loading="lazy"><div class="no" aria-hidden="true">13</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6674.jpg%20(1).jpeg" alt="The First Ride - Frame 14" loading="lazy"><div class="no" aria-hidden="true">14</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6674.JPG.jpeg" alt="The First Ride - Frame 15" loading="lazy"><div class="no" aria-hidden="true">15</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_6684.jpg.jpeg" alt="The First Ride - Frame 16" loading="lazy"><div class="no" aria-hidden="true">16</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/IMG_7458.JPG" alt="The First Ride - Frame 17" loading="lazy"><div class="no" aria-hidden="true">17</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/_ADI4467.JPG" alt="The First Ride - Frame 18" loading="lazy"><div class="no" aria-hidden="true">18</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/_ADI4468.JPG" alt="The First Ride - Frame 19" loading="lazy"><div class="no" aria-hidden="true">19</div></div></figure>
+      <figure class="cell" data-drive="The First Ride"><div class="fr"><img src="assets/img/first/_ADI4497.JPG" alt="The First Ride - Frame 20" loading="lazy"><div class="no" aria-hidden="true">20</div></div></figure>
     </div>
   </section>
 
@@ -212,25 +209,25 @@
       <div class="fcnt">19 FRAMES</div>
     </div>
     <div class="grid">
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06314.jpg" alt="Night run convoy staging at toll" loading="lazy"><div class="no" aria-hidden="true">01</div><figcaption>NIGHT RUN / TOLL STAGING</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG-20260503-WA0013.jpg.jpeg" alt="Gathering at 01:42 AM" loading="lazy"><div class="no" aria-hidden="true">02</div><figcaption>NIGHT RUN / 01:42 AM</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG05397.jpg" alt="Flyover convoy under sodium vapor lamps" loading="lazy"><div class="no" aria-hidden="true">03</div><figcaption>NIGHT RUN / FLYOVER</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG05422.jpg" alt="Empty expressway straight" loading="lazy"><div class="no" aria-hidden="true">04</div><figcaption>NIGHT RUN / EXPRESSWAY</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG05879.jpg" alt="Red taillights tracing the asphalt" loading="lazy"><div class="no" aria-hidden="true">05</div><figcaption>NIGHT RUN / LIGHT TRAILS</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06244.jpg" alt="Tunnel acceleration and acoustics" loading="lazy"><div class="no" aria-hidden="true">06</div><figcaption>NIGHT RUN / TUNNEL</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06316.jpg" alt="Crew parked across the toll bays" loading="lazy"><div class="no" aria-hidden="true">07</div><figcaption>NIGHT RUN / LINEUP</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06536.jpg" alt="Service lane stop for cooling down" loading="lazy"><div class="no" aria-hidden="true">08</div><figcaption>NIGHT RUN / COOLDOWN</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06553.jpg" alt="Engines ticking over at idle" loading="lazy"><div class="no" aria-hidden="true">09</div><figcaption>NIGHT RUN / IDLE</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG07056.jpg" alt="Piercing high beams on dark highway" loading="lazy"><div class="no" aria-hidden="true">10</div><figcaption>NIGHT RUN / HIGH BEAMS</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG07069.jpg" alt="Asphalt reflection in the dark" loading="lazy"><div class="no" aria-hidden="true">11</div><figcaption>NIGHT RUN / ASPHALT</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG07085.jpg" alt="Gas pump canopy lighting the machine" loading="lazy"><div class="no" aria-hidden="true">12</div><figcaption>NIGHT RUN / GAS PUMP</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG20260529192045.jpg.jpeg" alt="Dusk launch as the city sleeps" loading="lazy"><div class="no" aria-hidden="true">13</div><figcaption>NIGHT RUN / DUSK LAUNCH</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7173.JPG.jpeg" alt="Cruising silent city boulevards" loading="lazy"><div class="no" aria-hidden="true">14</div><figcaption>NIGHT RUN / SILENT CITY</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7175.JPG.jpeg" alt="Downshift echo between buildings" loading="lazy"><div class="no" aria-hidden="true">15</div><figcaption>NIGHT RUN / ECHO</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7176.JPG.jpeg" alt="Top floor parking deck overlook" loading="lazy"><div class="no" aria-hidden="true">16</div><figcaption>NIGHT RUN / DECK</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7177.JPG.jpeg" alt="Hood creases catching streetlights" loading="lazy"><div class="no" aria-hidden="true">17</div><figcaption>NIGHT RUN / HOOD</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7178.JPG.jpeg" alt="Red brake disc illumination" loading="lazy"><div class="no" aria-hidden="true">18</div><figcaption>NIGHT RUN / BRAKE GLOW</figcaption></div></figure>
-      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7181.JPG.jpeg" alt="Final rollout before sunrise" loading="lazy"><div class="no" aria-hidden="true">19</div><figcaption>NIGHT RUN / ROLLOUT</figcaption></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06314.jpg" alt="The Night Run - Frame 01" loading="lazy"><div class="no" aria-hidden="true">01</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG-20260503-WA0013.jpg.jpeg" alt="The Night Run - Frame 02" loading="lazy"><div class="no" aria-hidden="true">02</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG05397.jpg" alt="The Night Run - Frame 03" loading="lazy"><div class="no" aria-hidden="true">03</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG05422.jpg" alt="The Night Run - Frame 04" loading="lazy"><div class="no" aria-hidden="true">04</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG05879.jpg" alt="The Night Run - Frame 05" loading="lazy"><div class="no" aria-hidden="true">05</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06244.jpg" alt="The Night Run - Frame 06" loading="lazy"><div class="no" aria-hidden="true">06</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06316.jpg" alt="The Night Run - Frame 07" loading="lazy"><div class="no" aria-hidden="true">07</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06536.jpg" alt="The Night Run - Frame 08" loading="lazy"><div class="no" aria-hidden="true">08</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG06553.jpg" alt="The Night Run - Frame 09" loading="lazy"><div class="no" aria-hidden="true">09</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG07056.jpg" alt="The Night Run - Frame 10" loading="lazy"><div class="no" aria-hidden="true">10</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG07069.jpg" alt="The Night Run - Frame 11" loading="lazy"><div class="no" aria-hidden="true">11</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG07085.jpg" alt="The Night Run - Frame 12" loading="lazy"><div class="no" aria-hidden="true">12</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG20260529192045.jpg.jpeg" alt="The Night Run - Frame 13" loading="lazy"><div class="no" aria-hidden="true">13</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7173.JPG.jpeg" alt="The Night Run - Frame 14" loading="lazy"><div class="no" aria-hidden="true">14</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7175.JPG.jpeg" alt="The Night Run - Frame 15" loading="lazy"><div class="no" aria-hidden="true">15</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7176.JPG.jpeg" alt="The Night Run - Frame 16" loading="lazy"><div class="no" aria-hidden="true">16</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7177.JPG.jpeg" alt="The Night Run - Frame 17" loading="lazy"><div class="no" aria-hidden="true">17</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7178.JPG.jpeg" alt="The Night Run - Frame 18" loading="lazy"><div class="no" aria-hidden="true">18</div></div></figure>
+      <figure class="cell" data-drive="The Night Run"><div class="fr"><img src="assets/img/night%20run/IMG_7181.JPG.jpeg" alt="The Night Run - Frame 19" loading="lazy"><div class="no" aria-hidden="true">19</div></div></figure>
     </div>
   </section>
 
@@ -244,13 +241,13 @@
       <div class="fcnt">07 FRAMES</div>
     </div>
     <div class="grid">
-      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7378.JPG" alt="Mercedes cockpit cold start gauges" loading="lazy"><div class="no" aria-hidden="true">01</div><figcaption>MERCEDES / COCKPIT</figcaption></div></figure>
-      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG-20260213-WA0038.jpg" alt="Mercedes track arrival and stance" loading="lazy"><div class="no" aria-hidden="true">02</div><figcaption>MERCEDES / ARRIVAL</figcaption></div></figure>
-      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG-20260218-WA0005.jpg" alt="Mercedes morning staging grid" loading="lazy"><div class="no" aria-hidden="true">03</div><figcaption>MERCEDES / MORNING GRID</figcaption></div></figure>
-      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7374.JPG" alt="AMG power plant and engine note" loading="lazy"><div class="no" aria-hidden="true">04</div><figcaption>MERCEDES / AMG POWER</figcaption></div></figure>
-      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7379.JPG" alt="Twin quad exhaust styling" loading="lazy"><div class="no" aria-hidden="true">05</div><figcaption>MERCEDES / EXHAUST</figcaption></div></figure>
-      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7382.JPG" alt="Panamericana star grille detail" loading="lazy"><div class="no" aria-hidden="true">06</div><figcaption>MERCEDES / GRILLE</figcaption></div></figure>
-      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7384.JPG" alt="Sweeping past the apex curve" loading="lazy"><div class="no" aria-hidden="true">07</div><figcaption>MERCEDES / APEX</figcaption></div></figure>
+      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7382.JPG" alt="The Mercedes Benz Experience - Frame 01" loading="lazy"><div class="no" aria-hidden="true">01</div></div></figure>
+      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG-20260213-WA0038.jpg" alt="The Mercedes Benz Experience - Frame 02" loading="lazy"><div class="no" aria-hidden="true">02</div></div></figure>
+      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG-20260218-WA0005.jpg" alt="The Mercedes Benz Experience - Frame 03" loading="lazy"><div class="no" aria-hidden="true">03</div></div></figure>
+      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7374.JPG" alt="The Mercedes Benz Experience - Frame 04" loading="lazy"><div class="no" aria-hidden="true">04</div></div></figure>
+      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7378.JPG" alt="The Mercedes Benz Experience - Frame 05" loading="lazy"><div class="no" aria-hidden="true">05</div></div></figure>
+      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7379.JPG" alt="The Mercedes Benz Experience - Frame 06" loading="lazy"><div class="no" aria-hidden="true">06</div></div></figure>
+      <figure class="cell" data-drive="The Mercedes Benz Experience"><div class="fr"><img src="assets/img/Mercedes%20Benz%20experience_/IMG_7384.JPG" alt="The Mercedes Benz Experience - Frame 07" loading="lazy"><div class="no" aria-hidden="true">07</div></div></figure>
     </div>
   </section>
 
@@ -264,22 +261,22 @@
       <div class="fcnt">16 FRAMES</div>
     </div>
     <div class="grid">
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1562.JPG" alt="Underground collective meetup" loading="lazy"><div class="no" aria-hidden="true">01</div><figcaption>UNDERGROUND / MEETUP</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/DSC06874.JPG.jpeg" alt="Basement parking staging area" loading="lazy"><div class="no" aria-hidden="true">02</div><figcaption>UNDERGROUND / BASEMENT</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1532.JPG" alt="Concrete glow beneath neon" loading="lazy"><div class="no" aria-hidden="true">03</div><figcaption>UNDERGROUND / NEON</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1553.JPG" alt="Pillar shadows framing the machine" loading="lazy"><div class="no" aria-hidden="true">04</div><figcaption>UNDERGROUND / PILLARS</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1554.JPG" alt="Low stance slammed fitment" loading="lazy"><div class="no" aria-hidden="true">05</div><figcaption>UNDERGROUND / STANCE</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1557.JPG" alt="Supercar x superbike crossover" loading="lazy"><div class="no" aria-hidden="true">06</div><figcaption>UNDERGROUND / CROSSOVER</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1558.JPG" alt="Tunnel entrance descent" loading="lazy"><div class="no" aria-hidden="true">07</div><figcaption>UNDERGROUND / DESCENT</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1559.JPG" alt="Industrial warehouse lineup" loading="lazy"><div class="no" aria-hidden="true">08</div><figcaption>UNDERGROUND / INDUSTRIAL</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1561.JPG" alt="GRRR Nights meet machines" loading="lazy"><div class="no" aria-hidden="true">09</div><figcaption>UNDERGROUND / GRRR NIGHTS</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1563.JPG" alt="Deep concave wheel fitment" loading="lazy"><div class="no" aria-hidden="true">10</div><figcaption>UNDERGROUND / WHEELS</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1565.JPG" alt="Rear carbon diffuser angle" loading="lazy"><div class="no" aria-hidden="true">11</div><figcaption>UNDERGROUND / DIFFUSER</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1567.JPG" alt="Shadow play in lower deck" loading="lazy"><div class="no" aria-hidden="true">12</div><figcaption>UNDERGROUND / SHADOWS</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1568.JPG" alt="Exhaust rumble reverberating in concrete" loading="lazy"><div class="no" aria-hidden="true">13</div><figcaption>UNDERGROUND / RUMBLE</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1580.JPG" alt="Ramp climb leaving the basement" loading="lazy"><div class="no" aria-hidden="true">14</div><figcaption>UNDERGROUND / RAMP</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_20260407_232352.jpg" alt="Night staging beneath industrial girders" loading="lazy"><div class="no" aria-hidden="true">15</div><figcaption>UNDERGROUND / STAGING</figcaption></div></figure>
-      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_20260409_042947.jpg" alt="Early dawn rollout into the street" loading="lazy"><div class="no" aria-hidden="true">16</div><figcaption>UNDERGROUND / ROLLOUT</figcaption></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1562.JPG" alt="The Underground - Frame 01" loading="lazy"><div class="no" aria-hidden="true">01</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/DSC06874.JPG.jpeg" alt="The Underground - Frame 02" loading="lazy"><div class="no" aria-hidden="true">02</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1532.JPG" alt="The Underground - Frame 03" loading="lazy"><div class="no" aria-hidden="true">03</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1553.JPG" alt="The Underground - Frame 04" loading="lazy"><div class="no" aria-hidden="true">04</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1554.JPG" alt="The Underground - Frame 05" loading="lazy"><div class="no" aria-hidden="true">05</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1557.JPG" alt="The Underground - Frame 06" loading="lazy"><div class="no" aria-hidden="true">06</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1558.JPG" alt="The Underground - Frame 07" loading="lazy"><div class="no" aria-hidden="true">07</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1559.JPG" alt="The Underground - Frame 08" loading="lazy"><div class="no" aria-hidden="true">08</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1561.JPG" alt="The Underground - Frame 09" loading="lazy"><div class="no" aria-hidden="true">09</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1563.JPG" alt="The Underground - Frame 10" loading="lazy"><div class="no" aria-hidden="true">10</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1565.JPG" alt="The Underground - Frame 11" loading="lazy"><div class="no" aria-hidden="true">11</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1567.JPG" alt="The Underground - Frame 12" loading="lazy"><div class="no" aria-hidden="true">12</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1568.JPG" alt="The Underground - Frame 13" loading="lazy"><div class="no" aria-hidden="true">13</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1580.JPG" alt="The Underground - Frame 14" loading="lazy"><div class="no" aria-hidden="true">14</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_20260407_232352.jpg" alt="The Underground - Frame 15" loading="lazy"><div class="no" aria-hidden="true">15</div></div></figure>
+      <figure class="cell" data-drive="The Underground"><div class="fr"><img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_20260409_042947.jpg" alt="The Underground - Frame 16" loading="lazy"><div class="no" aria-hidden="true">16</div></div></figure>
     </div>
   </section>
 
@@ -386,7 +383,6 @@ function checkInitialRoute(){
   var activeKey = driveParam || hash;
 
   if(activeKey){
-    // Map variations
     if(activeKey === 'nightrun' || activeKey === 'night_run') activeKey = 'night-run';
     if(activeKey === 'firstride' || activeKey === 'first-ride') activeKey = 'first';
     if(activeKey === 'mercedes-benz' || activeKey === 'mercedes_benz') activeKey = 'mercedes';
@@ -418,7 +414,9 @@ function refreshVisibleCells(){
     c.tabIndex = 0;
     c.setAttribute('role', 'button');
     var im = c.querySelector('img');
-    if(im) c.setAttribute('aria-label', 'Open image: ' + im.alt);
+    var driveName = c.dataset.drive || 'Drive';
+    var no = c.querySelector('.no') ? c.querySelector('.no').textContent : pad(i + 1);
+    c.setAttribute('aria-label', driveName + ' - Frame ' + no);
     c.onclick = function(){ showLightbox(i); };
     c.onkeydown = function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); showLightbox(i); } };
   });
@@ -434,12 +432,12 @@ function showLightbox(idx){
   lastFocus = document.activeElement;
   var cell = visibleCells[cur];
   var im = cell.querySelector('img');
-  var figcap = cell.querySelector('figcaption');
   var driveName = cell.dataset.drive || 'Solus Archive';
+  var no = cell.querySelector('.no') ? cell.querySelector('.no').textContent : pad(cur + 1);
 
   document.getElementById('lbimg').src = im.src;
-  document.getElementById('lbimg').alt = im.alt;
-  document.getElementById('lbcap').innerHTML = '<small>' + driveName + '</small>' + (figcap ? figcap.textContent : im.alt);
+  document.getElementById('lbimg').alt = driveName + ' - Frame ' + no;
+  document.getElementById('lbcap').innerHTML = '<small>' + driveName + '</small>FRAME ' + no;
   document.getElementById('lbcnt').textContent = pad(cur + 1) + ' / ' + pad(visibleCells.length);
   lb.classList.add('open');
   document.getElementById('x').focus();
