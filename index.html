@@ -105,8 +105,8 @@ body.lock{overflow:hidden;height:100vh}
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);position:absolute;top:0;left:0;right:0}
 .ptop .n{color:var(--red)}
 .track{display:flex;gap:clamp(12px,2vw,30px);padding:0 var(--pad);will-change:transform}
-.card{position:relative;flex:0 0 clamp(270px,42vw,620px);height:clamp(380px,62vh,640px);overflow:hidden;background:var(--ink2)}
-.card img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) contrast(1.1);transition:filter .5s,transform .8s}
+.card{position:relative;flex:0 0 clamp(270px,42vw,620px);height:clamp(380px,62vh,640px);overflow:hidden;background:var(--ink2);contain:paint}
+.card img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) contrast(1.1);transition:filter .5s,transform .8s;transform:translateZ(0);backface-visibility:hidden}
 .card:hover img{filter:none;transform:scale(1.05)}
 .card .no{position:absolute;top:0;left:0;z-index:3;font-family:var(--display);font-size:clamp(60px,10vw,150px);
   line-height:.8;letter-spacing:-.04em;-webkit-text-stroke:1px rgba(244,241,230,.75);color:transparent;padding:10px 0 0 14px}
@@ -269,7 +269,7 @@ body.lock{overflow:hidden;height:100vh}
       <div class="ptop"><span class="n">02 / The Drives</span><span>FIELD ARCHIVE / 001-005 →</span></div>
       <div class="track" id="track">
         <article class="card" data-href="gallery.html?drive=ferrari#ferrari">
-          <img src="assets/img/Ferrari/IMG20260124103102.jpg" alt="Ferrari on track, The Ferrari Experience" loading="lazy">
+          <img src="assets/img/optimized/thumb/Ferrari/IMG20260124103102.webp" alt="Ferrari on track, The Ferrari Experience" loading="lazy" decoding="async">
           <div class="no">001</div>
           <div class="inf">
             <h3>The Ferrari<br>Experience</h3>
@@ -277,7 +277,7 @@ body.lock{overflow:hidden;height:100vh}
           </div>
         </article>
         <article class="card" data-href="gallery.html?drive=first#first">
-          <img src="assets/img/first/DSC_4445.jpg.jpeg" alt="Convoy run during The First Ride" loading="lazy">
+          <img src="assets/img/optimized/thumb/first/DSC_4445.webp" alt="Convoy run during The First Ride" loading="lazy" decoding="async">
           <div class="no">002</div>
           <div class="inf">
             <h3>The First<br>Ride</h3>
@@ -285,7 +285,7 @@ body.lock{overflow:hidden;height:100vh}
           </div>
         </article>
         <article class="card" data-href="gallery.html?drive=night-run#night-run">
-          <img src="assets/img/night%20run/IMG06314.jpg" alt="Night run convoy and gathering" loading="lazy">
+          <img src="assets/img/optimized/thumb/night%20run/IMG06314.webp" alt="Night run convoy and gathering" loading="lazy" decoding="async">
           <div class="no">003</div>
           <div class="inf">
             <h3>The Night<br>Run</h3>
@@ -293,7 +293,7 @@ body.lock{overflow:hidden;height:100vh}
           </div>
         </article>
         <article class="card" data-href="gallery.html?drive=mercedes#mercedes">
-          <img src="assets/img/Mercedes%20Benz%20experience_/IMG_7382.JPG" alt="Mercedes Benz drive experience" loading="lazy">
+          <img src="assets/img/optimized/thumb/Mercedes%20Benz%20experience_/IMG_7382.webp" alt="Mercedes Benz drive experience" loading="lazy" decoding="async">
           <div class="no">004</div>
           <div class="inf">
             <h3>The Mercedes Benz<br>Experience</h3>
@@ -301,7 +301,7 @@ body.lock{overflow:hidden;height:100vh}
           </div>
         </article>
         <article class="card" data-href="gallery.html?drive=underground#underground">
-          <img src="assets/img/Underground%20and%20one%20normal%20drive/IMG_1562.JPG" alt="Underground meetup and machines" loading="lazy">
+          <img src="assets/img/optimized/thumb/Underground%20and%20one%20normal%20drive/IMG_1562.webp" alt="Underground meetup and machines" loading="lazy" decoding="async">
           <div class="no">005</div>
           <div class="inf">
             <h3>The<br>Underground</h3>
@@ -319,13 +319,13 @@ body.lock{overflow:hidden;height:100vh}
   <h2 class="stmt rv">Fifty metres away<br>it's just a car.</h2>
   <div class="trip">
     <figure class="rv">
-      <div class="fr"><img src="assets/img/amg-wheel.jpg" alt="Close-up of an AMG alloy wheel and red brake caliper"><div class="idx" aria-hidden="true">001</div></div>
+      <div class="fr"><img src="assets/img/optimized/thumb/amg-wheel.webp" alt="Close-up of an AMG alloy wheel and red brake caliper" loading="lazy" decoding="async"><div class="idx" aria-hidden="true">001</div></div>
     </figure>
     <figure class="rv">
-      <div class="fr"><img src="assets/img/merc-cockpit.jpg" alt="Mercedes steering wheel and dashboard lit up at night"><div class="idx" aria-hidden="true">002</div></div>
+      <div class="fr"><img src="assets/img/optimized/thumb/merc-cockpit.webp" alt="Mercedes steering wheel and dashboard lit up at night" loading="lazy" decoding="async"><div class="idx" aria-hidden="true">002</div></div>
     </figure>
     <figure class="rv">
-      <div class="fr"><img src="assets/img/mg-interior.jpg" alt="Red leather steering wheel and MG badge, close up"><div class="idx" aria-hidden="true">003</div></div>
+      <div class="fr"><img src="assets/img/optimized/thumb/mg-interior.webp" alt="Red leather steering wheel and MG badge, close up" loading="lazy" decoding="async"><div class="idx" aria-hidden="true">003</div></div>
     </figure>
   </div>
 </section>
@@ -366,14 +366,21 @@ body.lock{overflow:hidden;height:100vh}
 
 <script>
 var hbg=document.getElementById('hbg'),qbg=document.getElementById('qbg'),cut=document.getElementById('cut');
-hbg.style.backgroundImage="url('assets/img/porsche-tail.jpg')";
-qbg.style.backgroundImage="url('assets/img/toll-drone.jpg')";
-cut.style.backgroundImage="url('assets/img/porsche-tail.jpg')";
+hbg.style.backgroundImage="url('assets/img/optimized/full/porsche-tail.webp')";
+qbg.style.backgroundImage="url('assets/img/optimized/full/toll-drone.webp')";
+cut.style.backgroundImage="url('assets/img/optimized/full/porsche-tail.webp')";
 
 var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- LOADER ---------- */
-var frames=['assets/img/porsche-tail.jpg','assets/img/toll-group.jpg','assets/img/audi-r8.jpg','assets/img/merc-cockpit.jpg','assets/img/parking-night.jpg','assets/img/amg-wheel.jpg'];
+var frames=[
+  'assets/img/optimized/thumb/porsche-tail.webp',
+  'assets/img/optimized/thumb/toll-group.webp',
+  'assets/img/optimized/thumb/audi-r8.webp',
+  'assets/img/optimized/thumb/merc-cockpit.webp',
+  'assets/img/optimized/thumb/parking-night.webp',
+  'assets/img/optimized/thumb/amg-wheel.webp'
+];
 var fl=document.getElementById('flash'),cnt=document.getElementById('cnt'),lbar=document.getElementById('lbar');
 var n=0,fi=0,flick=null;
 if(!reduceMotion){
@@ -457,10 +464,19 @@ function countUp(el){
 /* ---------- SCROLL ENGINE ---------- */
 var row1=document.getElementById('row1'),row2=document.getElementById('row2'),vm=document.getElementById('vm');
 var off1=0,off2=0,base=.55,last=0,vel=0,smooth=0;
-var pin=document.getElementById('pin'),track=document.getElementById('track');
+var pin=document.getElementById('pin'),track=document.getElementById('track'),pb=document.getElementById('pbar');
 var velCap = reduceMotion ? 0 : 18;
-function w1(){return row1.scrollWidth/2}
-function w2(){return row2.scrollWidth/2}
+var w1 = 0, w2 = 0, trackDist = 0, pinH = 0;
+
+function updateMetrics(){
+  if(row1) w1 = row1.scrollWidth / 2;
+  if(row2) w2 = row2.scrollWidth / 2;
+  if(track) trackDist = track.scrollWidth - innerWidth + 40;
+  if(pin) pinH = pin.offsetHeight - innerHeight;
+}
+updateMetrics();
+addEventListener('resize', updateMetrics);
+
 function frame(){
   var y=scrollY;
   vel=y-last;last=y;
@@ -468,9 +484,8 @@ function frame(){
   var sp=base+Math.min(Math.abs(smooth)*.22,velCap);
   var dir=smooth<-1?-1:1;
   off1-=sp*dir; off2+=sp*dir*.72;
-  var a=w1(),b=w2();
-  if(a){off1=off1%a; if(off1>0)off1-=a}
-  if(b){off2=off2%b; if(off2<-b)off2+=b; if(off2>0)off2-=b}
+  if(w1){off1=off1%w1; if(off1>0)off1-=w1}
+  if(w2){off2=off2%w2; if(off2<-w2)off2+=w2; if(off2>0)off2-=w2}
   row1.style.transform='translateX('+off1+'px)';
   row2.style.transform='translateX('+off2+'px)';
   if(!reduceMotion)vm.style.transform='skewY('+Math.max(-1,Math.min(1,smooth*.02))+'deg)';
@@ -480,12 +495,13 @@ function frame(){
   if(qbg){var qr=qbg.parentElement.getBoundingClientRect();
     if(qr.bottom>0&&qr.top<innerHeight)qbg.style.transform='translateY('+((innerHeight-qr.top)*.06-40)+'px)'}
 
-  if(pin&&innerWidth>860){
-    var r=pin.getBoundingClientRect(),h=pin.offsetHeight-innerHeight;
-    var p=Math.max(0,Math.min(1,-r.top/h));
-    var dist=track.scrollWidth-innerWidth+40;
-    track.style.transform='translateX('+(-p*dist)+'px)';
-    var pb=document.getElementById('pbar'); if(pb)pb.style.width=(p*100)+'%';
+  if(pin&&innerWidth>860&&pinH>0){
+    var r=pin.getBoundingClientRect();
+    if(r.bottom>0&&r.top<innerHeight){
+      var p=Math.max(0,Math.min(1,-r.top/pinH));
+      track.style.transform='translateX('+(-p*trackDist)+'px)';
+      if(pb)pb.style.width=(p*100)+'%';
+    }
   }
   requestAnimationFrame(frame);
 }
