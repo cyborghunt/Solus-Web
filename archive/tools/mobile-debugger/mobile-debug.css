@@ -1,0 +1,422 @@
+/* ===================================================================
+   SOLUS — Mobile View Debugger & Viewport Simulator
+   Left-edge toggle button + realistic device frame + inspector HUD
+   =================================================================== */
+
+/* ---- Left Edge Toggle Button ---- */
+.solus-debug-trigger {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  background: #0e0e0c;
+  color: #f4f1e6;
+  border: 1px solid #3b3b34;
+  border-left: 3px solid #ff1f2d;
+  border-radius: 0 6px 6px 0;
+  padding: 10px 7px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65), 0 0 10px rgba(255, 31, 45, 0.2);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, box-shadow 0.2s;
+  user-select: none;
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  outline: none;
+}
+
+.solus-debug-trigger:hover,
+.solus-debug-trigger:focus-visible {
+  transform: translateY(-50%) translateX(4px);
+  background: #181815;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.8), 0 0 16px rgba(255, 31, 45, 0.4);
+}
+
+.solus-debug-trigger .sdt-icon {
+  width: 16px;
+  height: 22px;
+  border: 1.5px solid #f4f1e6;
+  border-radius: 3px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.solus-debug-trigger .sdt-icon::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  width: 6px;
+  height: 1.5px;
+  background: #ff1f2d;
+  border-radius: 1px;
+}
+
+.solus-debug-trigger .sdt-icon::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  width: 4px;
+  height: 4px;
+  border: 1px solid #b8b4a6;
+  border-radius: 50%;
+}
+
+.solus-debug-trigger .sdt-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b8b4a6;
+  white-space: nowrap;
+}
+
+.solus-debug-trigger .sdt-dot {
+  width: 5px;
+  height: 5px;
+  background: #ff1f2d;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ff1f2d;
+  animation: sdtPulse 2s infinite ease-in-out;
+}
+
+@keyframes sdtPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Hide trigger inside iframe */
+body.is-in-iframe .solus-debug-trigger,
+body.is-in-iframe #solusMobileSimulator {
+  display: none !important;
+}
+
+/* ---- Simulator Modal Overlay ---- */
+.solus-sim-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(6, 6, 5, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #f4f1e6;
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+}
+
+.solus-sim-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---- Simulator Header Controls ---- */
+.solus-sim-bar {
+  background: #0e0e0c;
+  border-bottom: 1px solid #242420;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 20;
+}
+
+.solus-sim-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.solus-sim-title .badge {
+  background: #ff1f2d;
+  color: #000;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.solus-sim-devices {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.solus-sim-btn {
+  background: #181816;
+  border: 1px solid #3b3b34;
+  color: #b8b4a6;
+  font-family: inherit;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 2px;
+}
+
+.solus-sim-btn:hover {
+  background: #242420;
+  color: #f4f1e6;
+  border-color: #8c897e;
+}
+
+.solus-sim-btn.is-active {
+  background: #f4f1e6;
+  color: #060605;
+  border-color: #f4f1e6;
+  font-weight: 600;
+}
+
+.solus-sim-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.solus-sim-btn-danger {
+  border-color: #ff1f2d;
+  color: #ff1f2d;
+}
+
+.solus-sim-btn-danger:hover {
+  background: #ff1f2d;
+  color: #000;
+  border-color: #ff1f2d;
+}
+
+.solus-sim-close {
+  background: transparent;
+  border: 1px solid #3b3b34;
+  color: #f4f1e6;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s ease;
+  border-radius: 2px;
+}
+
+.solus-sim-close:hover {
+  background: #ff1f2d;
+  color: #000;
+  border-color: #ff1f2d;
+}
+
+/* ---- Simulator Viewport Workspace ---- */
+.solus-sim-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 24px;
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, rgba(20, 20, 18, 0.8) 0%, rgba(6, 6, 5, 0.98) 100%);
+}
+
+/* ---- Realistic Smartphone Chassis ---- */
+.solus-phone-chassis {
+  position: relative;
+  background: #000;
+  border-radius: 46px;
+  box-shadow: 
+    0 0 0 10px #181816,
+    0 0 0 12px #262622,
+    0 24px 70px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(255, 31, 45, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
+  transform-origin: center center;
+}
+
+/* Dynamic Island / Top Speaker Notch */
+.solus-phone-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 25px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 9px;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+}
+
+.solus-phone-camera {
+  width: 9px;
+  height: 9px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 50%;
+}
+
+.solus-phone-sensor {
+  width: 7px;
+  height: 7px;
+  background: #0d121f;
+  border-radius: 50%;
+}
+
+/* Bottom Home Bar */
+.solus-phone-homebar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
+  z-index: 25;
+  pointer-events: none;
+}
+
+/* The Live Frame */
+.solus-phone-screen {
+  width: 100%;
+  height: 100%;
+  background: #060605;
+  border: 0;
+  display: block;
+  overflow: auto;
+  border-radius: 44px;
+}
+
+/* ---- Simulator Footer Status Bar ---- */
+.solus-sim-footer {
+  background: #0e0e0c;
+  border-top: 1px solid #242420;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: #8c897e;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.solus-sim-footer b {
+  color: #f4f1e6;
+  font-weight: 500;
+}
+
+.solus-sim-footer .status-tag {
+  color: #ff1f2d;
+}
+
+/* ---- Mobile HUD (Shown when user is natively on a mobile device <= 768px) ---- */
+.solus-native-hud {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 9999;
+  background: rgba(14, 14, 12, 0.96);
+  border: 1px solid #3b3b34;
+  border-left: 3px solid #ff1f2d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--mono, 'IBM Plex Mono', monospace);
+  font-size: 9.5px;
+  color: #f4f1e6;
+  transform: translateY(150%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.solus-native-hud.is-open {
+  transform: translateY(0);
+}
+
+.solus-native-hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #242420;
+  padding-bottom: 8px;
+}
+
+.solus-native-hud-header h4 {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ff1f2d;
+  margin: 0;
+}
+
+.solus-native-hud-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  letter-spacing: 0.1em;
+}
+
+.solus-native-hud-info span {
+  color: #8c897e;
+}
+
+.solus-native-hud-info b {
+  color: #f4f1e6;
+}
+
+.solus-native-hud-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Debug Red Layout Outlines */
+body.solus-debug-outlines * {
+  outline: 1px solid rgba(255, 31, 45, 0.35) !important;
+  outline-offset: -1px !important;
+}
+
+/* Safe area support for phone chassis when scaled down */
+@media (max-height: 860px) {
+  .solus-phone-chassis {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-height: 720px) {
+  .solus-phone-chassis {
+    transform: scale(0.72);
+  }
+}

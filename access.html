@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Solus access is by introduction only. Request consideration.">
 <meta name="theme-color" content="#ff1f2d">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -48,7 +48,7 @@ body{background:var(--red);color:#000}
 
 .panel{position:fixed;inset:0;z-index:450;background:rgba(6,6,5,.97);display:none;place-items:center;padding:18px;overflow:auto}
 .panel.open{display:grid}
-.card{width:min(740px,96vw);background:var(--bone);color:var(--ink);padding:clamp(24px,3.8vw,44px);position:relative;margin:auto}
+.card{width:min(740px,96vw);max-height:calc(100svh - 40px);overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bone);color:var(--ink);padding:clamp(24px,3.8vw,44px);position:relative;margin:auto}
 .card h2{font-family:var(--display);font-size:clamp(40px,7vw,86px);line-height:.85;text-transform:uppercase;letter-spacing:-.03em;margin-top:12px}
 .card .lead{margin-top:16px;font-size:15px;line-height:1.55;color:#45433c;max-width:540px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
@@ -57,6 +57,7 @@ body{background:var(--red);color:#000}
 .card label .req{color:var(--redd);margin-left:2px}
 .card input,.card textarea{width:100%;margin-top:7px;padding:12px 14px;border:1px solid #8c897e;background:#fff;color:#060605;
   font-family:var(--body);font-size:14px;transition:border-color .2s,box-shadow .2s}
+@media(max-width:768px){.card input,.card textarea{font-size:16px}}
 .card input:focus-visible,.card textarea:focus-visible{outline:2px solid var(--red);outline-offset:1px;border-color:var(--red)}
 .card textarea{min-height:92px;resize:vertical}
 .card .go{margin-top:22px;width:100%;border:0;background:var(--ink);color:var(--bone);padding:17px;cursor:pointer;min-height:44px;

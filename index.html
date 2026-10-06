@@ -1,509 +1,1377 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Solus: a private automotive collective in Bangalore. Drive, machines, people.">
-<meta name="theme-color" content="#060605">
-<link rel="icon" type="image/png" href="assets/img/favicon.png">
-<script>document.documentElement.classList.add('has-js-cursor')</script>
-<title>SOLUS / Drive. Machines. People.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/core.css">
-<style>
-/* ================= LOADER ================= */
-body.lock{overflow:hidden;height:100vh}
-#load{position:fixed;inset:0;z-index:500;background:var(--ink)}
-#load .flash{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.5;filter:grayscale(1) contrast(1.3);transition:opacity .25s linear}
-#load .vig{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 20%,rgba(6,6,5,.92) 78%)}
-#load .cnt{position:absolute;right:var(--pad);bottom:clamp(20px,6vh,60px);font-family:var(--display);
-  font-size:clamp(70px,18vw,240px);line-height:.8;letter-spacing:-.04em}
-#load .lbl{position:absolute;left:var(--pad);bottom:clamp(26px,6vh,64px);font-family:var(--mono);
-  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--bone2)}
-#load .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--red);width:0}
+<!doctype html>
+<html lang="en">
 
-#enter{position:fixed;inset:0;z-index:480;background:var(--ink);display:grid;place-items:center;opacity:0;visibility:hidden}
-#enter.show{opacity:1;visibility:visible}
-#enter .word{font-family:var(--display);font-size:clamp(70px,20vw,300px);line-height:.78;letter-spacing:-.035em;
-  text-transform:uppercase;display:flex;overflow:hidden}
-#enter .word span{display:inline-block;transform:translateY(110%);transition:transform .85s cubic-bezier(.16,1,.3,1)}
-#enter.show .word span{transform:none}
-#enter .tagline{margin-top:22px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.38em;
-  text-transform:uppercase;color:var(--bone2);opacity:0;transition:opacity .6s .7s}
-#enter.show .tagline{opacity:1}
-#enter .prompt{position:absolute;bottom:8vh;left:50%;transform:translateX(-50%);display:grid;justify-items:center;gap:12px;
-  cursor:pointer;opacity:0;transition:opacity .6s .9s;border:0;background:none;min-height:44px}
-#enter.show .prompt{opacity:1}
-#enter .prompt b{font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--bone)}
-#enter .prompt i{width:1px;height:46px;background:var(--rule);position:relative;overflow:hidden;display:block}
-#enter .prompt i:after{content:'';position:absolute;inset:0;background:var(--red);transform:translateY(-100%);
-  animation:runD 1.4s cubic-bezier(.65,0,.35,1) infinite}
-@keyframes runD{50%{transform:none}100%{transform:translateY(100%)}}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Solus: a private automotive collective in Bangalore. Drive, machines, people.">
+  <meta name="theme-color" content="#060605">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <script>document.documentElement.classList.add('has-js-cursor')</script>
+  <title>SOLUS / Drive. Machines. People.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/core.css">
+  <style>
+    /* ================= LOADER ================= */
+    body.lock {
+      overflow: hidden;
+      height: 100vh
+    }
 
-#slats{position:fixed;inset:0;z-index:470;display:flex;pointer-events:none}
-#slats div{flex:1;background:var(--ink);transform:translateY(0);transition:transform .9s cubic-bezier(.76,0,.24,1)}
-#slats.gone div{transform:translateY(-101%)}
+    #load {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: var(--ink)
+    }
 
-/* ================= HERO ================= */
-#hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:grid;place-items:center}
-#hero .bg{position:absolute;inset:-8%;background-size:cover;background-position:center;
-  filter:grayscale(.45) contrast(1.1) brightness(.32);will-change:transform}
-#hero .bg:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,6,5,.95),transparent 55%)}
-#hero .mid{position:relative;z-index:3;text-align:center;width:100%;padding:0 var(--pad)}
-#hero .cut{font-family:var(--display);font-size:clamp(88px,27vw,420px);line-height:.74;letter-spacing:-.045em;
-  text-transform:uppercase;background-size:cover;background-position:center 38%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:contrast(1.45) saturate(1.3) brightness(1.12) drop-shadow(0 0 1px rgba(244,241,230,.55)) drop-shadow(0 18px 50px rgba(0,0,0,.75))}
-#hero .under{margin-top:18px;font-family:var(--mono);font-size:clamp(9px,1vw,12px);letter-spacing:.42em;
-  text-transform:uppercase;color:var(--bone2)}
-#hero .corner{position:absolute;z-index:4;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--bone2);max-width:230px;line-height:1.7}
-#hero .c-l{left:var(--pad);bottom:clamp(60px,12vh,110px)}
-#hero .c-r{right:var(--pad);bottom:clamp(60px,12vh,110px);text-align:right}
-#hero .c-r b{display:block;font-family:var(--display);font-size:34px;color:var(--bone);letter-spacing:.01em;line-height:1}
-@media(max-width:760px){#hero .corner{max-width:140px;font-size:9px}#hero .c-r b{font-size:24px}}
+    #load .flash {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: .5;
+      filter: grayscale(1) contrast(1.3);
+      transition: opacity .25s linear
+    }
 
-/* ================= VELOCITY MARQUEE ================= */
-.vm{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink2);
-  overflow:hidden;padding:clamp(10px,1.6vw,20px) 0;will-change:transform}
-.vm .row{display:flex;white-space:nowrap;will-change:transform}
-.vm .row span{font-family:var(--display);font-size:clamp(34px,7vw,104px);line-height:.9;text-transform:uppercase;
-  letter-spacing:-.025em;padding:0 clamp(14px,2vw,32px);display:inline-block}
-.vm .row span.o{-webkit-text-stroke:1px var(--bone);color:transparent}
-.vm .row span.r{color:var(--red)}
-.vm .r2 span{font-family:var(--mono);font-size:clamp(11px,1.4vw,15px);letter-spacing:.24em;color:var(--dim);
-  padding:0 22px;-webkit-text-stroke:0}
+    #load .vig {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(6, 6, 5, .92) 78%)
+    }
 
-/* ================= STATEMENT ================= */
-.stmt{font-family:var(--display);font-size:clamp(34px,5vw,84px);line-height:.94;text-transform:uppercase;
-  letter-spacing:-.025em;max-width:22ch}
-.stmt em{font-family:var(--body);font-weight:300;font-style:italic;text-transform:none;letter-spacing:-.02em}
+    #load .cnt {
+      position: absolute;
+      right: var(--pad);
+      bottom: clamp(20px, 6vh, 60px);
+      font-family: var(--display);
+      font-size: clamp(70px, 18vw, 240px);
+      line-height: .8;
+      letter-spacing: -.04em
+    }
 
-/* ================= FEATURED STRIP ================= */
-#featured{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink);padding:22px var(--pad)}
-#featured a{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;text-decoration:none;color:var(--bone)}
-#featured .label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--red);font-weight:600;border:1px solid var(--red);padding:4px 10px}
-#featured .copy{font-size:15px;color:var(--bone2)}
-#featured .copy b{color:var(--bone);font-weight:700}
-#featured .arrow{font-family:var(--mono);font-size:12px;color:var(--dim);transition:transform .2s linear}
-#featured a:hover .arrow{transform:translateX(4px);color:var(--bone)}
-@media(max-width:700px){#featured a{flex-direction:column;align-items:flex-start}}
+    #load .lbl {
+      position: absolute;
+      left: var(--pad);
+      bottom: clamp(26px, 6vh, 64px);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--bone2)
+    }
 
-/* ================= COLLECTIVE ================= */
-.cwrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,70px);align-items:end}
-.cwrap p{color:var(--bone2);font-size:clamp(15px,1.2vw,19px);line-height:1.6;max-width:440px;margin-top:20px}
-.counts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--rule)}
-.counts div{padding:22px 10px 0 0;border-right:1px solid var(--line)}
-.counts div:last-child{border-right:0}
-.counts b{display:block;font-family:var(--display);font-size:clamp(46px,9vw,140px);line-height:.82;letter-spacing:-.03em}
-.counts span{display:block;margin-top:8px;font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
-@media(max-width:860px){.cwrap{grid-template-columns:1fr}}
+    #load .bar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      background: var(--red);
+      width: 0
+    }
 
-/* ================= HORIZONTAL DRIVES ================= */
-#drives{background:var(--ink)}
-.pin{height:520vh;position:relative}
-.pinner{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
-.ptop{display:flex;justify-content:space-between;padding:74px var(--pad) 0;font-family:var(--mono);
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);position:absolute;top:0;left:0;right:0}
-.ptop .n{color:var(--red)}
-.track{display:flex;gap:clamp(12px,2vw,30px);padding:0 var(--pad);will-change:transform}
-.card{position:relative;flex:0 0 clamp(270px,42vw,620px);height:clamp(380px,62vh,640px);overflow:hidden;background:var(--ink2);contain:paint}
-.card img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) contrast(1.1);transition:filter .5s,transform .8s;transform:translateZ(0);backface-visibility:hidden}
-.card:hover img{filter:none;transform:scale(1.05)}
-.card .no{position:absolute;top:0;left:0;z-index:3;font-family:var(--display);font-size:clamp(60px,10vw,150px);
-  line-height:.8;letter-spacing:-.04em;-webkit-text-stroke:1px rgba(244,241,230,.75);color:transparent;padding:10px 0 0 14px}
-.card .inf{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:22px;
-  background:linear-gradient(transparent,rgba(6,6,5,.95) 55%)}
-.card .inf h3{font-family:var(--display);font-size:clamp(26px,3.2vw,50px);line-height:.88;text-transform:uppercase;letter-spacing:-.025em}
-.card .inf .drive-btn{margin-top:14px;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  background:rgba(6,6,5,.85);color:var(--bone);border:1px solid var(--rule);text-decoration:none;
-  transition:background .2s,color .2s,border-color .2s}
-.card:hover .drive-btn,.card .drive-btn:hover{background:var(--red);color:#000;border-color:var(--red)}
-.card .inf .d{margin-top:10px;display:flex;gap:18px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--bone2);flex-wrap:wrap}
-.card .inf .d b{color:var(--red);font-weight:500}
-.pbar{position:absolute;left:var(--pad);right:var(--pad);bottom:58px;height:1px;background:var(--rule)}
-.pbar i{display:block;height:100%;width:0;background:var(--red)}
-@media(max-width:860px){
-  .pin{height:auto}.pinner{position:static;height:auto;padding:0 0 30px}
-  .track{flex-direction:column;transform:none!important;padding:56px var(--pad) 0}
-  .card{flex:none;width:100%;height:64vh}.pbar{display:none}
-  .ptop{position:static;padding:0 var(--pad) 18px}
-}
+    #enter {
+      position: fixed;
+      inset: 0;
+      z-index: 480;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      visibility: hidden
+    }
 
-/* ================= DETAIL TRIPTYCH ================= */
-#detail{background:var(--ink);border-top:1px solid var(--line)}
-.trip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.4vw,20px);margin-top:clamp(34px,5vw,64px)}
-.trip figure{position:relative}
-.trip .fr{position:relative;overflow:hidden;aspect-ratio:3/4.15;background:var(--ink2)}
-.trip img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;
-  filter:grayscale(.3) contrast(1.12);transition:transform .9s cubic-bezier(.16,1,.3,1),filter .5s}
-.trip figure:hover img{transform:scale(1.06);filter:none}
-.trip .idx{position:absolute;z-index:3;left:12px;top:8px;font-family:var(--display);
-  font-size:clamp(30px,3.6vw,62px);line-height:1;letter-spacing:-.03em;
-  -webkit-text-stroke:1px rgba(244,241,230,.85);color:transparent}
-.trip figcaption{margin-top:14px;display:flex;justify-content:space-between;gap:12px;
-  border-top:1px solid var(--rule);padding-top:10px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.trip figcaption b{color:var(--bone);font-weight:500}
-.trip figure:hover figcaption b{color:var(--red)}
-@media(max-width:820px){.trip{grid-template-columns:1fr}.trip .fr{aspect-ratio:4/3}}
+    #enter.show {
+      opacity: 1;
+      visibility: visible
+    }
 
-/* ================= FULL BLEED QUOTE ================= */
-#quote{position:relative;height:88svh;min-height:420px;overflow:hidden;display:grid;place-items:center;text-align:center}
-#quote .bg{position:absolute;inset:-6%;background-size:cover;background-position:center;filter:grayscale(.4) brightness(.4) contrast(1.2);will-change:transform}
-#quote .q{position:relative;z-index:2;padding:0 var(--pad);font-family:var(--display);
-  font-size:clamp(34px,7.4vw,120px);line-height:.88;text-transform:uppercase;letter-spacing:-.03em}
-#quote .q em{font-family:var(--body);font-weight:300;font-style:italic;text-transform:none}
+    #enter .word {
+      font-family: var(--display);
+      font-size: clamp(70px, 20vw, 300px);
+      line-height: .78;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+      display: flex;
+      overflow: hidden
+    }
 
-/* ================= GALLERY TEASE ================= */
-.gt{display:grid;grid-template-columns:1.3fr .7fr;gap:8px;margin-top:clamp(30px,4vw,54px)}
-.gt figure{position:relative;overflow:hidden;background:var(--ink2);min-height:clamp(240px,30vw,420px)}
-.gt figure:first-child{grid-row:span 2;min-height:100%}
-.gt img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .5s ease}
-.gt figure:hover img{transform:scale(1.04)}
-.gt figcaption{position:absolute;z-index:2;left:12px;bottom:12px;background:var(--ink);padding:7px 9px;
-  font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
-@media(max-width:820px){.gt{grid-template-columns:1fr}.gt figure:first-child{min-height:clamp(240px,30vw,420px)}}
+    #enter .word span {
+      display: inline-block;
+      transform: translateY(110%);
+      transition: transform .85s cubic-bezier(.16, 1, .3, 1)
+    }
 
-/* ================= ACCESS ================= */
-#access{background:var(--red);color:#000;text-align:center;padding:clamp(80px,13vw,190px) var(--pad);border-bottom:0}
-#access .k{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#000}
-#access .big{font-family:var(--display);font-size:clamp(46px,13vw,220px);line-height:.8;text-transform:uppercase;
-  letter-spacing:-.04em;margin-top:24px;color:#000}
-#access .big span{-webkit-text-stroke:1.5px #000;color:transparent}
-#access p{max-width:540px;margin:26px auto 0;font-size:clamp(15px,1.3vw,19px);line-height:1.5;color:#000}
-#access .btn{margin-top:38px;border-color:#000;color:#000}
-#access .btn:hover{background:#000;color:var(--red)}
-#access .led{max-width:620px;margin:44px auto 0;text-align:left}
-#access .led div{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid rgba(0,0,0,.3);
-  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#000}
-#access .led b{font-weight:700}
-</style></head><body class="lock">
+    #enter.show .word span {
+      transform: none
+    }
 
-<a class="skip-link" href="#main" id="skipIntro">Skip intro, go to main content</a>
-<div id="grain" aria-hidden="true"></div><div id="scan" aria-hidden="true"></div>
-<div id="cur" aria-hidden="true"><b>VIEW</b></div><div id="curDot" aria-hidden="true"></div>
+    #enter .tagline {
+      margin-top: 22px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: var(--bone2);
+      opacity: 0;
+      transition: opacity .6s .7s
+    }
 
-<div id="load" aria-hidden="true">
-  <div class="flash" id="flash"></div><div class="vig"></div>
-  <div class="lbl">LOADING ARCHIVE / SOLUS / BANGALORE</div>
-  <div class="cnt" id="cnt">000</div>
-  <div class="bar" id="lbar"></div>
-</div>
+    #enter.show .tagline {
+      opacity: 1
+    }
 
-<div id="enter" aria-hidden="true">
-  <div>
-    <div class="word" id="word"></div>
-    <div class="tagline">DRIVE. MACHINES. PEOPLE.</div>
+    #enter .prompt {
+      position: absolute;
+      bottom: 8vh;
+      left: 50%;
+      transform: translateX(-50%);
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .6s .9s;
+      border: 0;
+      background: none;
+      min-height: 44px
+    }
+
+    #enter.show .prompt {
+      opacity: 1
+    }
+
+    #enter .prompt b {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--bone)
+    }
+
+    #enter .prompt i {
+      width: 1px;
+      height: 46px;
+      background: var(--rule);
+      position: relative;
+      overflow: hidden;
+      display: block
+    }
+
+    #enter .prompt i:after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--red);
+      transform: translateY(-100%);
+      animation: runD 1.4s cubic-bezier(.65, 0, .35, 1) infinite
+    }
+
+    @keyframes runD {
+      50% {
+        transform: none
+      }
+
+      100% {
+        transform: translateY(100%)
+      }
+    }
+
+    #slats {
+      position: fixed;
+      inset: 0;
+      z-index: 470;
+      display: flex;
+      pointer-events: none
+    }
+
+    #slats div {
+      flex: 1;
+      background: var(--ink);
+      transform: translateY(0);
+      transition: transform .9s cubic-bezier(.76, 0, .24, 1)
+    }
+
+    #slats.gone div {
+      transform: translateY(-101%)
+    }
+
+    /* ================= HERO ================= */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 520px;
+      overflow: hidden;
+      display: grid;
+      place-items: center
+    }
+
+    #hero .bg {
+      position: absolute;
+      inset: -8%;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(.45) contrast(1.1) brightness(.32);
+      will-change: transform
+    }
+
+    #hero .bg:after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(6, 6, 5, .95), transparent 55%)
+    }
+
+    #hero .mid {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      width: 100%;
+      padding: 0 var(--pad)
+    }
+
+    #hero .cut {
+      font-family: var(--display);
+      font-size: clamp(72px, 25vw, 420px);
+      line-height: .74;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+      background-size: cover;
+      background-position: center 38%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: contrast(1.45) saturate(1.3) brightness(1.12) drop-shadow(0 0 1px rgba(244, 241, 230, .55)) drop-shadow(0 18px 50px rgba(0, 0, 0, .75))
+    }
+
+    #hero .under {
+      margin-top: 18px;
+      font-family: var(--mono);
+      font-size: clamp(8px, 2.2vw, 12px);
+      letter-spacing: clamp(.2em, 2.8vw, .42em);
+      text-transform: uppercase;
+      color: var(--bone2)
+    }
+
+    #hero .corner {
+      position: absolute;
+      z-index: 4;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--bone2);
+      max-width: 230px;
+      line-height: 1.7
+    }
+
+    #hero .c-l {
+      left: var(--pad);
+      bottom: clamp(60px, 12vh, 110px)
+    }
+
+    #hero .c-r {
+      right: var(--pad);
+      bottom: clamp(60px, 12vh, 110px);
+      text-align: right
+    }
+
+    #hero .c-r b {
+      display: block;
+      font-family: var(--display);
+      font-size: 34px;
+      color: var(--bone);
+      letter-spacing: .01em;
+      line-height: 1
+    }
+
+    @media(max-width:760px) {
+      #hero .corner {
+        max-width: 130px;
+        font-size: 8.5px;
+        line-height: 1.5;
+        bottom: max(20px, env(safe-area-inset-bottom, 20px));
+      }
+
+      #hero .c-r b {
+        font-size: 22px
+      }
+    }
+
+    @media(max-width:380px) {
+      #hero .corner {
+        max-width: 105px;
+        font-size: 7.5px;
+      }
+      #hero .c-r b {
+        font-size: 18px;
+      }
+    }
+
+    /* ================= VELOCITY MARQUEE ================= */
+    .vm {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--ink2);
+      overflow: hidden;
+      padding: clamp(10px, 1.6vw, 20px) 0;
+      will-change: transform
+    }
+
+    .vm .row {
+      display: flex;
+      white-space: nowrap;
+      will-change: transform
+    }
+
+    .vm .row span {
+      font-family: var(--display);
+      font-size: clamp(34px, 7vw, 104px);
+      line-height: .9;
+      text-transform: uppercase;
+      letter-spacing: -.025em;
+      padding: 0 clamp(14px, 2vw, 32px);
+      display: inline-block
+    }
+
+    .vm .row span.o {
+      -webkit-text-stroke: 1px var(--bone);
+      color: transparent
+    }
+
+    .vm .row span.r {
+      color: var(--red)
+    }
+
+    .vm .r2 span {
+      font-family: var(--mono);
+      font-size: clamp(11px, 1.4vw, 15px);
+      letter-spacing: .24em;
+      color: var(--dim);
+      padding: 0 22px;
+      -webkit-text-stroke: 0
+    }
+
+    /* ================= STATEMENT ================= */
+    .stmt {
+      font-family: var(--display);
+      font-size: clamp(34px, 5vw, 84px);
+      line-height: .94;
+      text-transform: uppercase;
+      letter-spacing: -.025em;
+      max-width: 22ch
+    }
+
+    .stmt em {
+      font-family: var(--body);
+      font-weight: 300;
+      font-style: italic;
+      text-transform: none;
+      letter-spacing: -.02em
+    }
+
+    /* ================= FEATURED STRIP ================= */
+    #featured {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--ink);
+      padding: 22px var(--pad)
+    }
+
+    #featured a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--bone)
+    }
+
+    #featured .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .16em;
+      color: var(--red);
+      font-weight: 600;
+      border: 1px solid var(--red);
+      padding: 4px 10px
+    }
+
+    #featured .copy {
+      font-size: 15px;
+      color: var(--bone2)
+    }
+
+    #featured .copy b {
+      color: var(--bone);
+      font-weight: 700
+    }
+
+    #featured .arrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--dim);
+      transition: transform .2s linear
+    }
+
+    #featured a:hover .arrow {
+      transform: translateX(4px);
+      color: var(--bone)
+    }
+
+    @media(max-width:700px) {
+      #featured a {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    /* ================= COLLECTIVE ================= */
+    .cwrap {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: clamp(24px, 4vw, 70px);
+      align-items: end
+    }
+
+    .cwrap p {
+      color: var(--bone2);
+      font-size: clamp(15px, 1.2vw, 19px);
+      line-height: 1.6;
+      max-width: 440px;
+      margin-top: 20px
+    }
+
+    .counts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: clamp(40px, 6vw, 80px);
+      border-top: 1px solid var(--rule)
+    }
+
+    .counts div {
+      padding: 22px 10px 0 0;
+      border-right: 1px solid var(--line)
+    }
+
+    .counts div:last-child {
+      border-right: 0
+    }
+
+    .counts b {
+      display: block;
+      font-family: var(--display);
+      font-size: clamp(46px, 9vw, 140px);
+      line-height: .82;
+      letter-spacing: -.03em
+    }
+
+    .counts span {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .18em;
+      color: var(--dim);
+      text-transform: uppercase
+    }
+
+    @media(max-width:860px) {
+      .cwrap {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:600px) {
+      .counts div {
+        padding: 16px 6px 0 0
+      }
+      .counts b {
+        font-size: clamp(34px, 10vw, 56px)
+      }
+      .counts span {
+        font-size: 8px;
+        letter-spacing: .1em;
+        line-height: 1.3
+      }
+    }
+
+    /* ================= HORIZONTAL DRIVES ================= */
+    #drives {
+      background: var(--ink)
+    }
+
+    .pin {
+      height: 520vh;
+      position: relative
+    }
+
+    .pinner {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    .ptop {
+      display: flex;
+      justify-content: space-between;
+      padding: 74px var(--pad) 0;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0
+    }
+
+    .ptop .n {
+      color: var(--red)
+    }
+
+    .track {
+      display: flex;
+      gap: clamp(12px, 2vw, 30px);
+      padding: 0 var(--pad);
+      will-change: transform
+    }
+
+    .card {
+      position: relative;
+      flex: 0 0 clamp(270px, 42vw, 620px);
+      height: clamp(380px, 62vh, 640px);
+      overflow: hidden;
+      background: var(--ink2);
+      contain: paint
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(.5) contrast(1.1);
+      transition: filter .5s, transform .8s;
+      transform: translateZ(0);
+      backface-visibility: hidden
+    }
+
+    .card:hover img {
+      filter: none;
+      transform: scale(1.05)
+    }
+
+    .card .no {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      font-family: var(--display);
+      font-size: clamp(60px, 10vw, 150px);
+      line-height: .8;
+      letter-spacing: -.04em;
+      -webkit-text-stroke: 1px rgba(244, 241, 230, .75);
+      color: transparent;
+      padding: 10px 0 0 14px
+    }
+
+    .card .inf {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 22px;
+      background: linear-gradient(transparent, rgba(6, 6, 5, .95) 55%)
+    }
+
+    .card .inf h3 {
+      font-family: var(--display);
+      font-size: clamp(26px, 3.2vw, 50px);
+      line-height: .88;
+      text-transform: uppercase;
+      letter-spacing: -.025em
+    }
+
+    .card .inf .drive-btn {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      background: rgba(6, 6, 5, .85);
+      color: var(--bone);
+      border: 1px solid var(--rule);
+      text-decoration: none;
+      transition: background .2s, color .2s, border-color .2s
+    }
+
+    .card:hover .drive-btn,
+    .card .drive-btn:hover {
+      background: var(--red);
+      color: #000;
+      border-color: var(--red)
+    }
+
+    .card .inf .d {
+      margin-top: 10px;
+      display: flex;
+      gap: 18px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--bone2);
+      flex-wrap: wrap
+    }
+
+    .card .inf .d b {
+      color: var(--red);
+      font-weight: 500
+    }
+
+    .pbar {
+      position: absolute;
+      left: var(--pad);
+      right: var(--pad);
+      bottom: 58px;
+      height: 1px;
+      background: var(--rule)
+    }
+
+    .pbar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--red)
+    }
+
+    @media(max-width:860px) {
+      .pin {
+        height: auto
+      }
+
+      .pinner {
+        position: static;
+        height: auto;
+        padding: 0 0 24px
+      }
+
+      .track {
+        flex-direction: column;
+        transform: none !important;
+        padding: 12px var(--pad) 0;
+        gap: 18px
+      }
+
+      .card {
+        flex: none;
+        width: 100%;
+        height: clamp(320px, 58vh, 480px)
+      }
+
+      .card .inf {
+        padding: 18px
+      }
+
+      .card .inf h3 {
+        font-size: clamp(22px, 5.5vw, 36px)
+      }
+
+      .card .inf .drive-btn {
+        padding: 10px 18px;
+        min-height: 44px
+      }
+
+      .pbar {
+        display: none
+      }
+
+      .ptop {
+        position: static;
+        padding: 0 var(--pad) 14px
+      }
+    }
+
+    /* ================= DETAIL TRIPTYCH ================= */
+    #detail {
+      background: var(--ink);
+      border-top: 1px solid var(--line)
+    }
+
+    .trip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(8px, 1.4vw, 20px);
+      margin-top: clamp(34px, 5vw, 64px)
+    }
+
+    .trip figure {
+      position: relative
+    }
+
+    .trip .fr {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4.15;
+      background: var(--ink2)
+    }
+
+    .trip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      filter: grayscale(.3) contrast(1.12);
+      transition: transform .9s cubic-bezier(.16, 1, .3, 1), filter .5s
+    }
+
+    .trip figure:hover img {
+      transform: scale(1.06);
+      filter: none
+    }
+
+    .trip .idx {
+      position: absolute;
+      z-index: 3;
+      left: 12px;
+      top: 8px;
+      font-family: var(--display);
+      font-size: clamp(30px, 3.6vw, 62px);
+      line-height: 1;
+      letter-spacing: -.03em;
+      -webkit-text-stroke: 1px rgba(244, 241, 230, .85);
+      color: transparent
+    }
+
+    .trip figcaption {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid var(--rule);
+      padding-top: 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--dim)
+    }
+
+    .trip figcaption b {
+      color: var(--bone);
+      font-weight: 500
+    }
+
+    .trip figure:hover figcaption b {
+      color: var(--red)
+    }
+
+    @media(max-width:820px) {
+      .trip {
+        grid-template-columns: 1fr;
+        gap: 16px
+      }
+
+      .trip .fr {
+        aspect-ratio: 16/11
+      }
+    }
+
+    /* ================= FULL BLEED QUOTE ================= */
+    #quote {
+      position: relative;
+      height: clamp(320px, 65svh, 560px);
+      min-height: 300px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      text-align: center
+    }
+
+    #quote .bg {
+      position: absolute;
+      inset: -6%;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(.4) brightness(.4) contrast(1.2);
+      will-change: transform
+    }
+
+    #quote .q {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--pad);
+      font-family: var(--display);
+      font-size: clamp(34px, 7.4vw, 120px);
+      line-height: .88;
+      text-transform: uppercase;
+      letter-spacing: -.03em
+    }
+
+    #quote .q em {
+      font-family: var(--body);
+      font-weight: 300;
+      font-style: italic;
+      text-transform: none
+    }
+
+    /* ================= GALLERY TEASE ================= */
+    .gt {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 8px;
+      margin-top: clamp(30px, 4vw, 54px)
+    }
+
+    .gt figure {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink2);
+      min-height: clamp(240px, 30vw, 420px)
+    }
+
+    .gt figure:first-child {
+      grid-row: span 2;
+      min-height: 100%
+    }
+
+    .gt img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      transition: transform .5s ease
+    }
+
+    .gt figure:hover img {
+      transform: scale(1.04)
+    }
+
+    .gt figcaption {
+      position: absolute;
+      z-index: 2;
+      left: 12px;
+      bottom: 12px;
+      background: var(--ink);
+      padding: 7px 9px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase
+    }
+
+    @media(max-width:820px) {
+      .gt {
+        grid-template-columns: 1fr
+      }
+
+      .gt figure:first-child {
+        min-height: clamp(240px, 30vw, 420px)
+      }
+    }
+
+    /* ================= ACCESS ================= */
+    #access {
+      background: var(--red);
+      color: #000;
+      text-align: center;
+      padding: clamp(80px, 13vw, 190px) var(--pad);
+      border-bottom: 0
+    }
+
+    #access .k {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: #000
+    }
+
+    #access .big {
+      font-family: var(--display);
+      font-size: clamp(46px, 13vw, 220px);
+      line-height: .8;
+      text-transform: uppercase;
+      letter-spacing: -.04em;
+      margin-top: 24px;
+      color: #000
+    }
+
+    #access .big span {
+      -webkit-text-stroke: 1.5px #000;
+      color: transparent
+    }
+
+    #access p {
+      max-width: 540px;
+      margin: 26px auto 0;
+      font-size: clamp(15px, 1.3vw, 19px);
+      line-height: 1.5;
+      color: #000
+    }
+
+    #access .btn {
+      margin-top: 38px;
+      border-color: #000;
+      color: #000
+    }
+
+    #access .btn:hover {
+      background: #000;
+      color: var(--red)
+    }
+
+    #access .led {
+      max-width: 620px;
+      margin: 44px auto 0;
+      text-align: left
+    }
+
+    #access .led div {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .3);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #000
+    }
+
+    #access .led b {
+      font-weight: 700
+    }
+
+    @media(max-width:600px) {
+      #access {
+        padding: clamp(60px, 12vw, 110px) var(--pad)
+      }
+      #access .big {
+        font-size: clamp(38px, 11vw, 80px);
+        line-height: .86
+      }
+      #access p {
+        font-size: 14.5px;
+        line-height: 1.5
+      }
+      #access .btn {
+        width: 100%;
+        text-align: center
+      }
+    }
+  </style>
+</head>
+
+<body class="lock">
+
+  <a class="skip-link" href="#main" id="skipIntro">Skip intro, go to main content</a>
+  <div id="grain" aria-hidden="true"></div>
+  <div id="scan" aria-hidden="true"></div>
+  <div id="cur" aria-hidden="true"><b>VIEW</b></div>
+  <div id="curDot" aria-hidden="true"></div>
+
+  <div id="load" aria-hidden="true">
+    <div class="flash" id="flash"></div>
+    <div class="vig"></div>
+    <div class="lbl">LOADING ARCHIVE / SOLUS / BANGALORE</div>
+    <div class="cnt" id="cnt">000</div>
+    <div class="bar" id="lbar"></div>
   </div>
-  <button class="prompt" id="prompt" type="button"><b>SCROLL TO ENTER</b><i></i></button>
-</div>
-<div id="slats" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
-<header class="top">
-  <a class="mark" href="index.html"><img src="assets/img/logo.png" alt="Solus"></a>
-  <div class="mid">PRIVATE AUTOMOTIVE COLLECTIVE / 2025</div>
-  <button class="menu" id="mOpen" aria-haspopup="true" aria-controls="drawer" aria-expanded="false">INDEX <i aria-hidden="true"></i></button>
-</header>
-
-<nav class="drawer" id="drawer" aria-label="Site navigation">
-  <button class="dclose" id="mClose" type="button">CLOSE ×</button>
-  <div class="dnav">
-    <a href="#collective"><i>01</i><span>Collective</span></a>
-    <a href="#drives"><i>02</i><span>Drives</span></a>
-    <a href="gallery.html"><i>03</i><span>Archive</span></a>
-    <a href="#detail"><i>04</i><span>Detail</span></a>
-    <a href="access.html"><i>05</i><span>Access</span></a>
-  </div>
-  <div class="dfoot"><span>BANGALORE / INDIA</span><a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a></div>
-</nav>
-
-<main id="main">
-<section id="hero">
-  <div class="bg" id="hbg" role="img" aria-label="Porsche rear light detail, parked at a shop at night"></div>
-  <div class="mid">
-    <h1 class="cut" id="cut">SOLUS</h1>
-    <p class="under">PRIVATE AUTOMOTIVE COLLECTIVE / EST. 2025</p>
-  </div>
-  <p class="corner c-l">THE CAR IS ONLY<br>HALF THE STORY.</p>
-  <p class="corner c-r"><b>110</b>MACHINES<br>82 MEMBERS<br>05 DRIVES</p>
-</section>
-
-<div class="vm" id="vm" aria-hidden="true">
-  <div class="row" id="row1">
-    <span>DRIVE.</span><span class="o">MACHINES.</span><span class="r">PEOPLE.</span><span class="o">UNSEEN.</span>
-    <span>DRIVE.</span><span class="o">MACHINES.</span><span class="r">PEOPLE.</span><span class="o">UNSEEN.</span>
-  </div>
-  <div class="row r2" id="row2">
-    <span>BANGALORE</span><span>BY INTRODUCTION</span><span>01:42 AM</span><span>NO AUDIENCE</span><span>2025</span>
-    <span>BANGALORE</span><span>BY INTRODUCTION</span><span>01:42 AM</span><span>NO AUDIENCE</span><span>2025</span>
-  </div>
-</div>
-
-<section class="sec" id="collective">
-  <div class="shead"><span class="n">01 / The Collective</span><span class="t">Noise / Signal</span></div>
-  <div class="cwrap">
-    <h2 class="stmt rv">We don't collect cars.<br>We collect the people<br>who <em>refuse</em> to leave<br>them parked.</h2>
-    <div class="rv">
-      <p>No showroom. No leaderboard. No performance of wealth. A shared standard for how machines are built, driven and respected.</p>
-      <p style="color:var(--dim)">Access is earned in person, on the road, at an hour most people are asleep.</p>
+  <div id="enter" aria-hidden="true">
+    <div>
+      <div class="word" id="word"></div>
+      <div class="tagline">DRIVE. MACHINES. PEOPLE.</div>
     </div>
+    <button class="prompt" id="prompt" type="button"><b>SCROLL TO ENTER</b><i></i></button>
   </div>
-  <div class="counts rv">
-    <div><b data-count="110">0</b><span>Machines</span></div>
-    <div><b data-count="82">0</b><span>Members</span></div>
-    <div><b data-count="05">0</b><span>Archived Drives</span></div>
+  <div id="slats" aria-hidden="true">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
-</section>
 
-<section id="featured">
-  <a href="https://www.instagram.com/p/DZJUj_WhTUZ/" target="_blank" rel="noopener">
-    <span class="label">Featured</span>
-    <span class="copy">Solus was part of the Supercar &amp; Superbike Meetup at <b>Royal Enfield's GRRR Nights x Underground</b>, Bengaluru 2026.</span>
-    <span class="arrow">VIEW ON INSTAGRAM →</span>
-  </a>
-</section>
+  <header class="top">
+    <a class="mark" href="index.html"><img src="assets/img/logo.png" alt="Solus"></a>
+    <div class="mid">PRIVATE AUTOMOTIVE COLLECTIVE / 2025</div>
+    <button class="menu" id="mOpen" aria-haspopup="true" aria-controls="drawer" aria-expanded="false">INDEX <i
+        aria-hidden="true"></i></button>
+  </header>
 
-<section id="drives">
-  <div class="pin" id="pin">
-    <div class="pinner">
-      <div class="ptop"><span class="n">02 / The Drives</span><span>FIELD ARCHIVE / 001-005 →</span></div>
-      <div class="track" id="track">
-        <article class="card" data-href="gallery.html?drive=ferrari#ferrari">
-          <img src="assets/img/optimized/thumb/Ferrari/IMG20260124103102.webp" alt="Ferrari on track, The Ferrari Experience" loading="lazy" decoding="async">
-          <div class="no">001</div>
-          <div class="inf">
-            <h3>The Ferrari<br>Experience</h3>
-            <a class="drive-btn" href="gallery.html?drive=ferrari#ferrari">OPEN FOLDER →</a>
-          </div>
-        </article>
-        <article class="card" data-href="gallery.html?drive=first#first">
-          <img src="assets/img/optimized/thumb/first/DSC_4445.webp" alt="Convoy run during The First Ride" loading="lazy" decoding="async">
-          <div class="no">002</div>
-          <div class="inf">
-            <h3>The First<br>Ride</h3>
-            <a class="drive-btn" href="gallery.html?drive=first#first">OPEN FOLDER →</a>
-          </div>
-        </article>
-        <article class="card" data-href="gallery.html?drive=night-run#night-run">
-          <img src="assets/img/optimized/thumb/night%20run/IMG06314.webp" alt="Night run convoy and gathering" loading="lazy" decoding="async">
-          <div class="no">003</div>
-          <div class="inf">
-            <h3>The Night<br>Run</h3>
-            <a class="drive-btn" href="gallery.html?drive=night-run#night-run">OPEN FOLDER →</a>
-          </div>
-        </article>
-        <article class="card" data-href="gallery.html?drive=mercedes#mercedes">
-          <img src="assets/img/optimized/thumb/Mercedes%20Benz%20experience_/IMG_7382.webp" alt="Mercedes Benz drive experience" loading="lazy" decoding="async">
-          <div class="no">004</div>
-          <div class="inf">
-            <h3>The Mercedes Benz<br>Experience</h3>
-            <a class="drive-btn" href="gallery.html?drive=mercedes#mercedes">OPEN FOLDER →</a>
-          </div>
-        </article>
-        <article class="card" data-href="gallery.html?drive=underground#underground">
-          <img src="assets/img/optimized/thumb/Underground%20and%20one%20normal%20drive/IMG_1562.webp" alt="Underground meetup and machines" loading="lazy" decoding="async">
-          <div class="no">005</div>
-          <div class="inf">
-            <h3>The<br>Underground</h3>
-            <a class="drive-btn" href="gallery.html?drive=underground#underground">OPEN FOLDER →</a>
-          </div>
-        </article>
+  <nav class="drawer" id="drawer" aria-label="Site navigation">
+    <button class="dclose" id="mClose" type="button">CLOSE ×</button>
+    <div class="dnav">
+      <a href="#collective"><i>01</i><span>Collective</span></a>
+      <a href="#drives"><i>02</i><span>Drives</span></a>
+      <a href="gallery.html"><i>03</i><span>Archive</span></a>
+      <a href="#detail"><i>04</i><span>Detail</span></a>
+      <a href="access.html"><i>05</i><span>Access</span></a>
+    </div>
+    <div class="dfoot"><span>BANGALORE / INDIA</span><a href="https://www.instagram.com/solusclub.blr/" target="_blank"
+        rel="noopener">INSTAGRAM ↗</a></div>
+  </nav>
+
+  <main id="main">
+    <section id="hero">
+      <div class="bg" id="hbg" role="img" aria-label="Porsche rear light detail, parked at a shop at night"></div>
+      <div class="mid">
+        <h1 class="cut" id="cut">SOLUS</h1>
+        <p class="under">PRIVATE AUTOMOTIVE COLLECTIVE / EST. 2025</p>
       </div>
-      <div class="pbar" aria-hidden="true"><i id="pbar"></i></div>
+      <p class="corner c-l">THE CAR IS ONLY<br>HALF THE STORY.</p>
+      <p class="corner c-r"><b>110</b>MACHINES<br>82 MEMBERS<br>05 DRIVES</p>
+    </section>
+
+    <div class="vm" id="vm" aria-hidden="true">
+      <div class="row" id="row1">
+        <span>DRIVE.</span><span class="o">MACHINES.</span><span class="r">PEOPLE.</span><span class="o">UNSEEN.</span>
+        <span>DRIVE.</span><span class="o">MACHINES.</span><span class="r">PEOPLE.</span><span class="o">UNSEEN.</span>
+      </div>
+      <div class="row r2" id="row2">
+        <span>BANGALORE</span><span>BY INTRODUCTION</span><span>01:42 AM</span><span>NO AUDIENCE</span><span>2025</span>
+        <span>BANGALORE</span><span>BY INTRODUCTION</span><span>01:42 AM</span><span>NO AUDIENCE</span><span>2025</span>
+      </div>
     </div>
-  </div>
-</section>
 
-<section class="sec" id="detail">
-  <div class="shead"><span class="n">03 / The Detail</span><span class="t">Form / Engineering</span></div>
-  <h2 class="stmt rv">Fifty metres away<br>it's just a car.</h2>
-  <div class="trip">
-    <figure class="rv">
-      <div class="fr"><img src="assets/img/optimized/thumb/amg-wheel.webp" alt="Close-up of an AMG alloy wheel and red brake caliper" loading="lazy" decoding="async"><div class="idx" aria-hidden="true">001</div></div>
-    </figure>
-    <figure class="rv">
-      <div class="fr"><img src="assets/img/optimized/thumb/merc-cockpit.webp" alt="Mercedes steering wheel and dashboard lit up at night" loading="lazy" decoding="async"><div class="idx" aria-hidden="true">002</div></div>
-    </figure>
-    <figure class="rv">
-      <div class="fr"><img src="assets/img/optimized/thumb/mg-interior.webp" alt="Red leather steering wheel and MG badge, close up" loading="lazy" decoding="async"><div class="idx" aria-hidden="true">003</div></div>
-    </figure>
-  </div>
-</section>
+    <section class="sec" id="collective">
+      <div class="shead"><span class="n">01 / The Collective</span><span class="t">Noise / Signal</span></div>
+      <div class="cwrap">
+        <h2 class="stmt rv">We don't collect cars.<br>We collect the people<br>who <em>refuse</em> to leave<br>them
+          parked.</h2>
+        <div class="rv">
+          <p>No showroom. No leaderboard. No performance of wealth. A shared standard for how machines are built, driven
+            and respected.</p>
+          <p style="color:var(--dim)">Access is earned in person, on the road, at an hour most people are asleep.</p>
+        </div>
+      </div>
+      <div class="counts rv">
+        <div><b data-count="110">0</b><span>Machines</span></div>
+        <div><b data-count="82">0</b><span>Members</span></div>
+        <div><b data-count="05">0</b><span>Archived Drives</span></div>
+      </div>
+    </section>
 
-<section id="quote">
-  <div class="bg" id="qbg" role="img" aria-label="Drone view of club cars and members gathered at a toll plaza"></div>
-  <p class="q">Everyone sees<br>the <em>car.</em><br>Nobody sees<br>the drive.</p>
-</section>
+    <section id="featured">
+      <a href="https://www.instagram.com/p/DZJUj_WhTUZ/" target="_blank" rel="noopener">
+        <span class="label">Featured</span>
+        <span class="copy">Solus was part of the Supercar &amp; Superbike Meetup at <b>Royal Enfield's GRRR Nights x
+            Underground</b>, Bengaluru 2026.</span>
+        <span class="arrow">VIEW ON INSTAGRAM →</span>
+      </a>
+    </section>
 
-<section id="access">
-  <p class="k">04 / Access / By Introduction Only</p>
-  <h2 class="big">You don't<br><span>apply.</span><br>You get<br><span>invited.</span></h2>
-  <p>There is no public enrolment. No membership payment. No waiting list you can't buy your way up. Solus grows through the people already inside it.</p>
-  <div class="led">
-    <div><span>Intake status</span><b>CLOSED</b></div>
-    <div><span>Route in</span><b>INTRODUCTION</b></div>
-    <div><span>Open applications</span><b>NOT ACCEPTED</b></div>
-    <div><span>Exceptions made</span><b>NONE TO DATE</b></div>
-  </div>
-  <a class="btn" href="access.html">REQUEST CONSIDERATION →</a>
-</section>
-</main>
+    <section id="drives">
+      <div class="pin" id="pin">
+        <div class="pinner">
+          <div class="ptop"><span class="n">02 / The Drives</span><span>FIELD ARCHIVE / 001-005 →</span></div>
+          <div class="track" id="track">
+            <article class="card" data-href="gallery.html?drive=ferrari#ferrari">
+              <img src="assets/img/optimized/thumb/Ferrari/IMG20260124103102.webp"
+                alt="Ferrari on track, The Ferrari Experience" loading="lazy" decoding="async">
+              <div class="no">001</div>
+              <div class="inf">
+                <h3>The Ferrari<br>Experience</h3>
+                <a class="drive-btn" href="gallery.html?drive=ferrari#ferrari">OPEN FOLDER →</a>
+              </div>
+            </article>
+            <article class="card" data-href="gallery.html?drive=first#first">
+              <img src="assets/img/optimized/thumb/first/DSC_4445.webp" alt="Convoy run during The First Ride"
+                loading="lazy" decoding="async">
+              <div class="no">002</div>
+              <div class="inf">
+                <h3>The First<br>Ride</h3>
+                <a class="drive-btn" href="gallery.html?drive=first#first">OPEN FOLDER →</a>
+              </div>
+            </article>
+            <article class="card" data-href="gallery.html?drive=night-run#night-run">
+              <img src="assets/img/optimized/thumb/night%20run/IMG06314.webp" alt="Night run convoy and gathering"
+                loading="lazy" decoding="async">
+              <div class="no">003</div>
+              <div class="inf">
+                <h3>The Night<br>Run</h3>
+                <a class="drive-btn" href="gallery.html?drive=night-run#night-run">OPEN FOLDER →</a>
+              </div>
+            </article>
+            <article class="card" data-href="gallery.html?drive=mercedes#mercedes">
+              <img src="assets/img/optimized/thumb/Mercedes%20Benz%20experience_/IMG_7382.webp"
+                alt="Mercedes Benz drive experience" loading="lazy" decoding="async">
+              <div class="no">004</div>
+              <div class="inf">
+                <h3>The Mercedes Benz<br>Experience</h3>
+                <a class="drive-btn" href="gallery.html?drive=mercedes#mercedes">OPEN FOLDER →</a>
+              </div>
+            </article>
+            <article class="card" data-href="gallery.html?drive=underground#underground">
+              <img src="assets/img/optimized/thumb/Underground%20and%20one%20normal%20drive/IMG_1562.webp"
+                alt="Underground meetup and machines" loading="lazy" decoding="async">
+              <div class="no">005</div>
+              <div class="inf">
+                <h3>The<br>Underground</h3>
+                <a class="drive-btn" href="gallery.html?drive=underground#underground">OPEN FOLDER →</a>
+              </div>
+            </article>
+          </div>
+          <div class="pbar" aria-hidden="true"><i id="pbar"></i></div>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <div class="fmark" aria-hidden="true"><div class="t"><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span></div></div>
-  <div class="foot">
-    <p class="fm">SOLUS</p>
-    <div class="fl">
-      <a href="gallery.html">ARCHIVE</a><a href="access.html">ACCESS</a>
-      <a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+    <section class="sec" id="detail">
+      <div class="shead"><span class="n">03 / The Detail</span><span class="t">Form / Engineering</span></div>
+      <h2 class="stmt rv">Fifty metres away<br>it's just a car.</h2>
+      <div class="trip">
+        <figure class="rv">
+          <div class="fr"><img src="assets/img/optimized/thumb/amg-wheel.webp"
+              alt="Close-up of an AMG alloy wheel and red brake caliper" loading="lazy" decoding="async">
+            <div class="idx" aria-hidden="true">001</div>
+          </div>
+        </figure>
+        <figure class="rv">
+          <div class="fr"><img src="assets/img/optimized/thumb/merc-cockpit.webp"
+              alt="Mercedes steering wheel and dashboard lit up at night" loading="lazy" decoding="async">
+            <div class="idx" aria-hidden="true">002</div>
+          </div>
+        </figure>
+        <figure class="rv">
+          <div class="fr"><img src="assets/img/optimized/thumb/mg-interior.webp"
+              alt="Red leather steering wheel and MG badge, close up" loading="lazy" decoding="async">
+            <div class="idx" aria-hidden="true">003</div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section id="quote">
+      <div class="bg" id="qbg" role="img" aria-label="Drone view of club cars and members gathered at a toll plaza">
+      </div>
+      <p class="q">Everyone sees<br>the <em>car.</em><br>Nobody sees<br>the drive.</p>
+    </section>
+
+    <section id="access">
+      <p class="k">04 / Access / By Introduction Only</p>
+      <h2 class="big">You don't<br><span>apply.</span><br>You get<br><span>invited.</span></h2>
+      <p>There is no public enrolment. No membership payment. No waiting list you can't buy your way up. Solus grows
+        through the people already inside it.</p>
+      <div class="led">
+        <div><span>Intake status</span><b>CLOSED</b></div>
+        <div><span>Route in</span><b>INTRODUCTION</b></div>
+        <div><span>Open applications</span><b>NOT ACCEPTED</b></div>
+        <div><span>Exceptions made</span><b>NONE TO DATE</b></div>
+      </div>
+      <a class="btn" href="access.html">REQUEST CONSIDERATION →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="fmark" aria-hidden="true">
+      <div class="t">
+        <span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span><span>SOLUS</span>
+      </div>
     </div>
-  </div>
-  <div class="fbar">
-    <span>© 2025 SOLUS</span><span>DRIVE. MACHINES. PEOPLE.</span>
-    <span class="legal"><a href="terms.html">TERMS</a><a href="privacy.html">PRIVACY</a><a href="cookies.html">COOKIES</a><a href="copyright.html">COPYRIGHT</a></span>
-  </div>
-</footer>
+    <div class="foot">
+      <p class="fm">SOLUS</p>
+      <div class="fl">
+        <a href="gallery.html">ARCHIVE</a><a href="access.html">ACCESS</a>
+        <a href="https://www.instagram.com/solusclub.blr/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+      </div>
+    </div>
+    <div class="fbar">
+      <span>© 2025 SOLUS</span><span>DRIVE. MACHINES. PEOPLE.</span>
+      <span class="legal"><a href="terms.html">TERMS</a><a href="privacy.html">PRIVACY</a><a
+          href="cookies.html">COOKIES</a><a href="copyright.html">COPYRIGHT</a></span>
+    </div>
+  </footer>
 
-<script>
-var hbg=document.getElementById('hbg'),qbg=document.getElementById('qbg'),cut=document.getElementById('cut');
-hbg.style.backgroundImage="url('assets/img/optimized/full/porsche-tail.webp')";
-qbg.style.backgroundImage="url('assets/img/optimized/full/toll-drone.webp')";
-cut.style.backgroundImage="url('assets/img/optimized/full/porsche-tail.webp')";
+  <script>
+    var hbg = document.getElementById('hbg'), qbg = document.getElementById('qbg'), cut = document.getElementById('cut');
+    hbg.style.backgroundImage = "url('assets/img/optimized/full/porsche-tail.webp')";
+    qbg.style.backgroundImage = "url('assets/img/optimized/full/toll-drone.webp')";
+    cut.style.backgroundImage = "url('assets/img/optimized/full/porsche-tail.webp')";
 
-var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---------- LOADER ---------- */
-var frames=[
-  'assets/img/optimized/thumb/porsche-tail.webp',
-  'assets/img/optimized/thumb/toll-group.webp',
-  'assets/img/optimized/thumb/audi-r8.webp',
-  'assets/img/optimized/thumb/merc-cockpit.webp',
-  'assets/img/optimized/thumb/parking-night.webp',
-  'assets/img/optimized/thumb/amg-wheel.webp'
-];
-var fl=document.getElementById('flash'),cnt=document.getElementById('cnt'),lbar=document.getElementById('lbar');
-var n=0,fi=0,flick=null;
-if(!reduceMotion){
-  fl.style.backgroundImage='url('+frames[0]+')';
-  flick=setInterval(function(){fl.style.backgroundImage='url('+frames[fi++%frames.length]+')'},240);
-}
-var tick=setInterval(function(){
-  n+=Math.random()*9+3; if(n>=100){n=100;clearInterval(tick);if(flick)clearInterval(flick);setTimeout(toEnter,reduceMotion?60:320)}
-  cnt.textContent=('00'+Math.floor(n)).slice(-3); lbar.style.width=n+'%';
-},reduceMotion?40:95);
-function toEnter(){
-  document.getElementById('load').setAttribute('aria-hidden','true');
-  document.getElementById('load').style.display='none';
-  var e=document.getElementById('enter');
-  e.removeAttribute('aria-hidden');
-  e.classList.add('show');
-}
-(function(){var w=document.getElementById('word');
-  'SOLUS'.split('').forEach(function(c,i){var s=document.createElement('span');s.textContent=c;s.style.transitionDelay=(i*.07)+'s';w.appendChild(s)});})();
-
-/* ---------- SCROLL / SKIP TO ENTER ---------- */
-var entered=false;
-function enter(){
-  if(entered)return;entered=true;
-  var sl=document.getElementById('slats'),ds=sl.children;
-  for(var i=0;i<ds.length;i++)ds[i].style.transitionDelay=(i*.055)+'s';
-  document.getElementById('enter').classList.remove('show');
-  document.getElementById('enter').setAttribute('aria-hidden','true');
-  sl.classList.add('gone');
-  document.body.classList.remove('lock');
-  setTimeout(function(){sl.remove();document.getElementById('enter').remove();document.getElementById('load').remove()},reduceMotion?50:1500);
-}
-addEventListener('wheel',function(e){if(!entered){e.preventDefault();if(e.deltaY>1)enter();}},{passive:false});
-addEventListener('touchmove',function(e){if(!entered){e.preventDefault();enter();}},{passive:false});
-addEventListener('keydown',function(e){if(!entered&&['ArrowDown','PageDown','Enter',' '].indexOf(e.key)>-1){e.preventDefault();enter();}});
-document.getElementById('prompt').onclick=enter;
-document.getElementById('skipIntro').addEventListener('click',function(e){
-  enter();
-  setTimeout(function(){document.getElementById('main').focus({preventScroll:false})},reduceMotion?60:200);
-});
-
-/* ---------- CURSOR ---------- */
-var cu=document.getElementById('cur'),cd=document.getElementById('curDot'),cx=0,cy=0,tx=0,ty=0;
-addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;cd.style.transform='translate('+tx+'px,'+ty+'px)'});
-(function loop(){cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;cu.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop)})();
-function hoverable(el,label){el.addEventListener('mouseenter',function(){cu.classList.add('big');cu.querySelector('b').textContent=label});
-  el.addEventListener('mouseleave',function(){cu.classList.remove('big')})}
-document.querySelectorAll('a,button').forEach(function(e){hoverable(e,'GO')});
-document.querySelectorAll('.card').forEach(function(c){
-  hoverable(c,'OPEN');
-  c.addEventListener('click',function(e){
-    if(e.target.tagName==='A'||e.target.closest('a'))return;
-    var link=c.querySelector('.drive-btn')||c.getAttribute('data-href');
-    if(link){
-      if(typeof link==='string')window.location.href=link;
-      else link.click();
+    /* ---------- LOADER ---------- */
+    var frames = [
+      'assets/img/optimized/thumb/porsche-tail.webp',
+      'assets/img/optimized/thumb/toll-group.webp',
+      'assets/img/optimized/thumb/audi-r8.webp',
+      'assets/img/optimized/thumb/merc-cockpit.webp',
+      'assets/img/optimized/thumb/parking-night.webp',
+      'assets/img/optimized/thumb/amg-wheel.webp'
+    ];
+    var fl = document.getElementById('flash'), cnt = document.getElementById('cnt'), lbar = document.getElementById('lbar');
+    var n = 0, fi = 0, flick = null;
+    if (!reduceMotion) {
+      fl.style.backgroundImage = 'url(' + frames[0] + ')';
+      flick = setInterval(function () { fl.style.backgroundImage = 'url(' + frames[fi++ % frames.length] + ')' }, 240);
     }
-  });
-});
-
-/* ---------- DRAWER ---------- */
-var dr=document.getElementById('drawer'),mOpen=document.getElementById('mOpen');
-mOpen.onclick=function(){dr.classList.add('open');mOpen.setAttribute('aria-expanded','true')};
-document.getElementById('mClose').onclick=function(){dr.classList.remove('open');mOpen.setAttribute('aria-expanded','false')};
-dr.querySelectorAll('.dnav a').forEach(function(a){a.onclick=function(){dr.classList.remove('open');mOpen.setAttribute('aria-expanded','false')}});
-
-/* ---------- REVEAL ---------- */
-var io=new IntersectionObserver(function(es){es.forEach(function(e){
-  if(e.isIntersecting){e.target.classList.add('on');
-    if(e.target.classList.contains('counts'))e.target.querySelectorAll('[data-count]').forEach(countUp);
-    io.unobserve(e.target)}})},{threshold:.15});
-document.querySelectorAll('.rv').forEach(function(e,i){e.style.transitionDelay=(i%5*.07)+'s';io.observe(e)});
-
-function countUp(el){
-  var t=parseInt(el.dataset.count,10),pad=el.dataset.count.length;
-  if(reduceMotion){el.textContent=('00'+t).slice(-pad);return}
-  var s=null;
-  function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1200,1);var v=Math.floor(t*(1-Math.pow(1-p,3)));
-    el.textContent=('00'+v).slice(-pad);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
-
-/* ---------- SCROLL ENGINE ---------- */
-var row1=document.getElementById('row1'),row2=document.getElementById('row2'),vm=document.getElementById('vm');
-var off1=0,off2=0,base=.55,last=0,vel=0,smooth=0;
-var pin=document.getElementById('pin'),track=document.getElementById('track'),pb=document.getElementById('pbar');
-var velCap = reduceMotion ? 0 : 18;
-var w1 = 0, w2 = 0, trackDist = 0, pinH = 0;
-
-function updateMetrics(){
-  if(row1) w1 = row1.scrollWidth / 2;
-  if(row2) w2 = row2.scrollWidth / 2;
-  if(track) trackDist = track.scrollWidth - innerWidth + 40;
-  if(pin) pinH = pin.offsetHeight - innerHeight;
-}
-updateMetrics();
-addEventListener('resize', updateMetrics);
-
-function frame(){
-  var y=scrollY;
-  vel=y-last;last=y;
-  smooth+=(vel-smooth)*.12;
-  var sp=base+Math.min(Math.abs(smooth)*.22,velCap);
-  var dir=smooth<-1?-1:1;
-  off1-=sp*dir; off2+=sp*dir*.72;
-  if(w1){off1=off1%w1; if(off1>0)off1-=w1}
-  if(w2){off2=off2%w2; if(off2<-w2)off2+=w2; if(off2>0)off2-=w2}
-  row1.style.transform='translateX('+off1+'px)';
-  row2.style.transform='translateX('+off2+'px)';
-  if(!reduceMotion)vm.style.transform='skewY('+Math.max(-1,Math.min(1,smooth*.02))+'deg)';
-
-  if(hbg){var hr=hbg.parentElement.getBoundingClientRect();
-    if(hr.bottom>0&&hr.top<innerHeight)hbg.style.transform='translateY('+(-hr.top*.18)+'px)'}
-  if(qbg){var qr=qbg.parentElement.getBoundingClientRect();
-    if(qr.bottom>0&&qr.top<innerHeight)qbg.style.transform='translateY('+((innerHeight-qr.top)*.06-40)+'px)'}
-
-  if(pin&&innerWidth>860&&pinH>0){
-    var r=pin.getBoundingClientRect();
-    if(r.bottom>0&&r.top<innerHeight){
-      var p=Math.max(0,Math.min(1,-r.top/pinH));
-      track.style.transform='translateX('+(-p*trackDist)+'px)';
-      if(pb)pb.style.width=(p*100)+'%';
+    var tick = setInterval(function () {
+      n += Math.random() * 9 + 3; if (n >= 100) { n = 100; clearInterval(tick); if (flick) clearInterval(flick); setTimeout(toEnter, reduceMotion ? 60 : 320) }
+      cnt.textContent = ('00' + Math.floor(n)).slice(-3); lbar.style.width = n + '%';
+    }, reduceMotion ? 40 : 95);
+    function toEnter() {
+      document.getElementById('load').setAttribute('aria-hidden', 'true');
+      document.getElementById('load').style.display = 'none';
+      var e = document.getElementById('enter');
+      e.removeAttribute('aria-hidden');
+      e.classList.add('show');
     }
-  }
-  requestAnimationFrame(frame);
-}
-requestAnimationFrame(frame);
-</script></body></html>
+    (function () {
+      var w = document.getElementById('word');
+      'SOLUS'.split('').forEach(function (c, i) { var s = document.createElement('span'); s.textContent = c; s.style.transitionDelay = (i * .07) + 's'; w.appendChild(s) });
+    })();
+
+    /* ---------- SCROLL / SKIP TO ENTER ---------- */
+    var entered = false;
+    function enter() {
+      if (entered) return; entered = true;
+      var sl = document.getElementById('slats'), ds = sl.children;
+      for (var i = 0; i < ds.length; i++)ds[i].style.transitionDelay = (i * .055) + 's';
+      document.getElementById('enter').classList.remove('show');
+      document.getElementById('enter').setAttribute('aria-hidden', 'true');
+      sl.classList.add('gone');
+      document.body.classList.remove('lock');
+      setTimeout(function () { sl.remove(); document.getElementById('enter').remove(); document.getElementById('load').remove() }, reduceMotion ? 50 : 1500);
+    }
+    addEventListener('wheel', function (e) { if (!entered) { e.preventDefault(); if (e.deltaY > 1) enter(); } }, { passive: false });
+    addEventListener('touchmove', function (e) { if (!entered) { e.preventDefault(); enter(); } }, { passive: false });
+    addEventListener('keydown', function (e) { if (!entered && ['ArrowDown', 'PageDown', 'Enter', ' '].indexOf(e.key) > -1) { e.preventDefault(); enter(); } });
+    document.getElementById('prompt').onclick = enter;
+    var enterEl = document.getElementById('enter');
+    if (enterEl) {
+      enterEl.addEventListener('click', enter);
+      enterEl.addEventListener('touchend', function (e) { if (!entered) { enter(); } });
+    }
+    document.getElementById('skipIntro').addEventListener('click', function (e) {
+      enter();
+      setTimeout(function () { document.getElementById('main').focus({ preventScroll: false }) }, reduceMotion ? 60 : 200);
+    });
+
+    /* ---------- CURSOR ---------- */
+    var cu = document.getElementById('cur'), cd = document.getElementById('curDot'), cx = 0, cy = 0, tx = 0, ty = 0;
+    addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; cd.style.transform = 'translate(' + tx + 'px,' + ty + 'px)' });
+    (function loop() { cx += (tx - cx) * .16; cy += (ty - cy) * .16; cu.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop) })();
+    function hoverable(el, label) {
+      el.addEventListener('mouseenter', function () { cu.classList.add('big'); cu.querySelector('b').textContent = label });
+      el.addEventListener('mouseleave', function () { cu.classList.remove('big') })
+    }
+    document.querySelectorAll('a,button').forEach(function (e) { hoverable(e, 'GO') });
+    document.querySelectorAll('.card').forEach(function (c) {
+      hoverable(c, 'OPEN');
+      c.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+        var link = c.querySelector('.drive-btn') || c.getAttribute('data-href');
+        if (link) {
+          if (typeof link === 'string') window.location.href = link;
+          else link.click();
+        }
+      });
+    });
+
+    /* ---------- DRAWER ---------- */
+    var dr = document.getElementById('drawer'), mOpen = document.getElementById('mOpen');
+    mOpen.onclick = function () { dr.classList.add('open'); mOpen.setAttribute('aria-expanded', 'true') };
+    document.getElementById('mClose').onclick = function () { dr.classList.remove('open'); mOpen.setAttribute('aria-expanded', 'false') };
+    dr.querySelectorAll('.dnav a').forEach(function (a) { a.onclick = function () { dr.classList.remove('open'); mOpen.setAttribute('aria-expanded', 'false') } });
+
+    /* ---------- REVEAL ---------- */
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('on');
+          if (e.target.classList.contains('counts')) e.target.querySelectorAll('[data-count]').forEach(countUp);
+          io.unobserve(e.target)
+        }
+      })
+    }, { threshold: .15 });
+    document.querySelectorAll('.rv').forEach(function (e, i) { e.style.transitionDelay = (i % 5 * .07) + 's'; io.observe(e) });
+
+    function countUp(el) {
+      var t = parseInt(el.dataset.count, 10), pad = el.dataset.count.length;
+      if (reduceMotion) { el.textContent = ('00' + t).slice(-pad); return }
+      var s = null;
+      function step(ts) {
+        if (!s) s = ts; var p = Math.min((ts - s) / 1200, 1); var v = Math.floor(t * (1 - Math.pow(1 - p, 3)));
+        el.textContent = ('00' + v).slice(-pad); if (p < 1) requestAnimationFrame(step)
+      } requestAnimationFrame(step)
+    }
+
+    /* ---------- SCROLL ENGINE ---------- */
+    var row1 = document.getElementById('row1'), row2 = document.getElementById('row2'), vm = document.getElementById('vm');
+    var off1 = 0, off2 = 0, base = .55, last = 0, vel = 0, smooth = 0;
+    var pin = document.getElementById('pin'), track = document.getElementById('track'), pb = document.getElementById('pbar');
+    var velCap = reduceMotion ? 0 : 18;
+    var w1 = 0, w2 = 0, trackDist = 0, pinH = 0;
+
+    function updateMetrics() {
+      if (row1) w1 = row1.scrollWidth / 2;
+      if (row2) w2 = row2.scrollWidth / 2;
+      if (track) trackDist = track.scrollWidth - innerWidth + 40;
+      if (pin) pinH = pin.offsetHeight - innerHeight;
+    }
+    updateMetrics();
+    addEventListener('resize', updateMetrics);
+
+    function frame() {
+      var y = scrollY;
+      vel = y - last; last = y;
+      smooth += (vel - smooth) * .12;
+      var sp = base + Math.min(Math.abs(smooth) * .22, velCap);
+      var dir = smooth < -1 ? -1 : 1;
+      off1 -= sp * dir; off2 += sp * dir * .72;
+      if (w1) { off1 = off1 % w1; if (off1 > 0) off1 -= w1 }
+      if (w2) { off2 = off2 % w2; if (off2 < -w2) off2 += w2; if (off2 > 0) off2 -= w2 }
+      row1.style.transform = 'translateX(' + off1 + 'px)';
+      row2.style.transform = 'translateX(' + off2 + 'px)';
+      if (!reduceMotion && innerWidth > 768) vm.style.transform = 'skewY(' + Math.max(-1, Math.min(1, smooth * .02)) + 'deg)';
+
+      if (hbg) {
+        var hr = hbg.parentElement.getBoundingClientRect();
+        if (hr.bottom > 0 && hr.top < innerHeight) hbg.style.transform = 'translateY(' + (-hr.top * .18) + 'px)'
+      }
+      if (qbg) {
+        var qr = qbg.parentElement.getBoundingClientRect();
+        if (qr.bottom > 0 && qr.top < innerHeight) qbg.style.transform = 'translateY(' + ((innerHeight - qr.top) * .06 - 40) + 'px)'
+      }
+
+      if (pin && innerWidth > 860 && pinH > 0) {
+        var r = pin.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < innerHeight) {
+          var p = Math.max(0, Math.min(1, -r.top / pinH));
+          track.style.transform = 'translateX(' + (-p * trackDist) + 'px)';
+          if (pb) pb.style.width = (p * 100) + '%';
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  </script>
+</body>
+
+</html>
